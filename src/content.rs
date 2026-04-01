@@ -1,9 +1,7 @@
-use maud::{html, Markup};
+use maud::Markup;
 
 use crate::utils::intro::intro;
 
 pub fn content() -> Markup {
-    html! {
-        .intro { (intro()) }
-    }
+    intro()
 }

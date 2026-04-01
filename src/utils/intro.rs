@@ -1,14 +1,14 @@
 use maud::{Markup, html};
 
-pub const AURA_IMG: &str = "/public/images/aura.jpeg";
+use crate::utils::images::AURA_IMG;
 
 pub fn intro() -> Markup {
     html! {
         .section-container {
             .split-layout{
                 .left-column {
-                    h1 { "Welcome to my portfolio" }
-                    h2 { "Blah Blah BLah I do stuff sometimes"}   
+                    h1 { "Hello! Im Aaron" }
+                    h2 { "I do stuff sometimes"}   
                 }      
                 .right-column {
                     .aura-container {
