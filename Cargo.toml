@@ -1,0 +1,8 @@
+[package]
+name = "portfolio"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+maud = "0.27.0"
+rocket = "0.5.1"
