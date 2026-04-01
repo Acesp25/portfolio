@@ -107,6 +107,7 @@ p {
     display: flex;
     flex-direction: column;
     padding-left: var(--section-x-padding);
+    padding-right: var(--section-x-padding);
     gap: 24px;
     margin-top: 20px;
 }
