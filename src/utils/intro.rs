@@ -1,6 +1,6 @@
 use maud::{Markup, html};
 
-pub const AURA_IMG: &str = "/public/images/aura.jpeg";
+pub const AURA_IMG: &str = "/public/images/me/aura.jpeg";
 
 pub fn intro() -> Markup {
     html! {

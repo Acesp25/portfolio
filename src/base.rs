@@ -16,6 +16,8 @@ pub fn base(name: &str, desc: &str, content: Markup) -> Markup {
 				meta name="description" content=(desc);
                 title { (name) }
 
+                link rel="icon" type="image/ico" href="/public/images/me/aura.ico";
+
 				style { (include_css!("/main.css")) }
             }
 
