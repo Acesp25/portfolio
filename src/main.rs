@@ -1,13 +1,11 @@
 extern crate rocket;
+extern crate maud;
 
-use rocket::{get, build, launch, routes};
+use rocket::{launch, routes};
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
+mod index;
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::build().mount("/", routes![index::index])
 }
