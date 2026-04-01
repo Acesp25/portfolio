@@ -1,10 +1,14 @@
 use rocket::get;
-use maud::{html, Markup};
+use maud::Markup;
+
+use crate::base::base;
+use crate::body::body;
 
 #[get("/")]
 pub fn index() -> Markup {
-    html! {
-        h1 { "Hello, world!" }
-        h2 { "blah blah blah"}
-    }
+    base (
+        "Aaron's Portfolio",
+        "A Rust website about me :)",
+        body()
+    )
 }
