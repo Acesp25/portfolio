@@ -1,7 +1,11 @@
 extern crate rocket;
 extern crate maud;
+extern crate css_minify;
 
 use rocket::{launch, routes};
+
+#[macro_use]
+mod macros;
 
 mod index;
 mod base;

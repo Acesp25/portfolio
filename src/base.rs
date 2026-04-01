@@ -1,4 +1,5 @@
-use maud::{Markup, html, DOCTYPE};
+use maud::{Markup, html, DOCTYPE, PreEscaped};
+use css_minify::optimizations::{Level, Minifier};
 
 pub fn base(name: &str, desc: &str, content: Markup) -> Markup {
 	assert!(
@@ -15,8 +16,7 @@ pub fn base(name: &str, desc: &str, content: Markup) -> Markup {
 				meta name="description" content=(desc);
                 title { (name) }
 
-                
-				//style { (include_css!("/main.css")) }
+				style { (include_css!("/main.css")) }
             }
 
             body {
