@@ -9,7 +9,7 @@ use crate::utils::body::body;
 #[get("/")]
 pub fn index() -> Markup {
     base (
-        "Aaron's Portfolio",
+        "Aaron Espinoza",
         "A Rust website about me :)",
         html! {
             (intro())

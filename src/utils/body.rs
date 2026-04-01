@@ -1,5 +1,7 @@
 use maud::{Markup, html};
 
+use crate::utils::experiences::experiences;
+
 pub fn body() -> Markup {
     html! {
         .section-container {
@@ -16,7 +18,7 @@ pub fn body() -> Markup {
             }
             .tab-content {
                 #exp-content .tab {
-                    p { "tab1 content" }
+                    (experiences())
                 }
                 #proj-content .tab {
                     p { "tab2 content" }

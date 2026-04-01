@@ -8,6 +8,11 @@
 		url(/public/fonts/JetBrainsMono-Regular.ttf) format("truetype");
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 :root {
     --background-color: #ccbfae;
 
@@ -16,11 +21,30 @@
     --section-max-width: 1050px;
 	--section-x-padding: 20px;
 	--section-y-padding: 24px;
+    
+    --experience-logo-size: 100px;
 }
 
 body {
     font-family: "JetBrains Mono", monospace;
     background-color: var(--background-color);
+    animation: fadeIn 0.3s ease-in forwards;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.9em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+p {
+    font-size: 1.3em;
 }
 
 .section-container {
@@ -47,6 +71,7 @@ body {
     flex: 1;
 }
 
+
 .aura-container {
     display: flex;
     justify-content: flex-end;
@@ -61,6 +86,41 @@ body {
     border-color: var(--border-color);
     border-width: 7px;
 }
+
+
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--section-x-padding);
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.experience {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px
+}
+
+.experience .logo-container img {
+    width: var(--experience-logo-size);
+    height: var(--experience-logo-size);
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 5px #3d302a);
+}
+
+.experience .info-container {
+    flex: 1;
+    gap: 4px;
+}
+
+.experience .info-container h3, 
+.experience .info-container p {
+    margin: 0;
+}
+
 
 .tabs {
 	margin-top: 32px;
@@ -109,7 +169,7 @@ body {
 #proj-content, 
 #about-content, 
 #read-content {
-    transition: transform 0.5s, opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 
@@ -118,7 +178,6 @@ body {
 #about-input:checked ~ .tab-content #about-content,
 #read-input:checked ~ .tab-content #read-content {
     position: relative;
-    transform: translateX(0);
     opacity: 100%;
     display: block;
 }
