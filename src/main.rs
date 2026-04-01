@@ -9,7 +9,6 @@ mod macros;
 
 mod utils;
 mod index;
-mod base;
 
 #[launch]
 fn rocket() -> _ {
