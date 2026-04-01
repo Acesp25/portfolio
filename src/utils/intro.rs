@@ -7,8 +7,8 @@ pub fn intro() -> Markup {
         .section-container {
             .split-layout{
                 .left-column {
-                    h1 { "Hello! Bueno! 你好!" }
-                    h2 { "I'm Aaron Espinoza" }
+                    h1 { "Hello! Hola! 你好!" }
+                    h2 { "I'm " strong { "Aaron Espinoza" } }
                     p { "I enjoy a good challenge and chocolate milk :)" }   
                     p { "My current interests include Operating Systems, Computer Networking, and Computer Vision." }
                 }      

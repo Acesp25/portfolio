@@ -17,6 +17,7 @@
     --background-color: #ccbfae;
     --font-color: #302c2a;
     --accent-color: #5f5f5f;
+    --highlight-color: #ab9696;
     --border-color: #3d302a;
 
     --section-max-width: 1050px;
@@ -47,6 +48,10 @@ h3 {
 
 p {
     font-size: 1.3em;
+}
+
+strong {
+    border-bottom: 5px solid var(--highlight-color);
 }
 
 .date {
@@ -159,13 +164,15 @@ p {
     padding: 5px;
 	cursor: pointer;
 	transform: scale(1);
-	transition: transform .2s;
+    border-bottom: 3px solid transparent;
+	transition: transform .2s, border-bottom .2s;
 }
 
 #exp-input:checked ~ .tabs #exp-label,
 #proj-input:checked ~ .tabs #proj-label,
 #about-input:checked ~ .tabs #about-label,
 #read-input:checked ~ .tabs #read-label {
+    border-bottom: 5px solid var(--highlight-color);
 	transform: scale(1.2);
 }
 
