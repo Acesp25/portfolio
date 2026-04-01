@@ -7,8 +7,10 @@ pub fn intro() -> Markup {
         .section-container {
             .split-layout{
                 .left-column {
-                    h1 { "Hello! Im Aaron" }
-                    h2 { "I do stuff sometimes"}   
+                    h1 { "Hello! Bueno! 你好!" }
+                    h2 { "I'm Aaron Espinoza" }
+                    p { "I enjoy challenging myself and chocolate milk :)" }   
+                    p { "My current interests include Operating Systems, Computer Networking, and Computer Vision." }
                 }      
                 .right-column {
                     .aura-container {

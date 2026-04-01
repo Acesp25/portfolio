@@ -13,7 +13,9 @@
 
     --border-color: #3d302a;
 
-    --section-max-width: 950px;
+    --section-max-width: 1050px;
+	--section-x-padding: 20px;
+	--section-y-padding: 24px;
 }
 
 body {
@@ -23,9 +25,15 @@ body {
 
 .section-container {
     margin: auto auto;
+    justify-content: center;
     max-width: var(--section-max-width);
 }
 
+.header {
+    text-align: center;
+    gap: 20px;
+    margin-block: 20px;
+}
 
 .split-layout {
     display: flex;
@@ -34,20 +42,83 @@ body {
     gap: 40px;
     margin-block: 40px;
 }
+
 .left-column, .right-column {
     flex: 1;
 }
+
+.aura-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .aura-container img {
     width: 75%;
     height: auto;
-    border-radius: var(--border-radius);
     display: block;
-
     border-style: solid;
     border-radius: 25%;
     border-color: var(--border-color);
     border-width: 7px;
 }
+
+.tabs {
+	margin-top: 32px;
+	margin-bottom: 16px;
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+}
+
+#tab1-label, #tab2-label {
+	font-weight: bold;
+	padding-bottom: 5px;
+	cursor: pointer;
+	transform: scale(1);
+	transition: transform .2s;
+}
+
+#tab1-input:checked ~ .tabs #tab1-label,
+#tab2-input:checked ~ .tabs #tab2-label {
+	transform: scale(1.2);
+}
+
+.tab-content {
+    max-width: var(--section-max-width);
+	margin: auto;
+	position: relative;
+}
+
+.tab {
+	padding-inline: var(--section-x-padding);
+	position: absolute;
+	top: 0;
+	overflow-y: hidden;
+	height: 100%;
+	transition: transform 0.5s, opacity 0.5s;
+	opacity: 0%;
+}
+
+#tab1-content {
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+#tab2-content {
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+#tab1-input:checked ~ .tab-content #tab1-content,
+#tab2-input:checked ~ .tab-content #tab2-content {
+    position: relative;
+    transform: translateX(0);
+    opacity: 100%;
+    display: block;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
 /* Stacks on mobile */
 @media screen and (max-width: 768px) {
     .split-layout {
