@@ -1,6 +1,6 @@
 use maud::{Markup, html};
 
-use crate::utils::images::AURA_IMG;
+pub const AURA_IMG: &str = "/public/images/aura.jpeg";
 
 pub fn intro() -> Markup {
     html! {
@@ -14,7 +14,7 @@ pub fn intro() -> Markup {
                 }      
                 .right-column {
                     .aura-container {
-                        img src=(AURA_IMG);
+                        img alt="Image of me aurafarming" src=(AURA_IMG);
                     }
                 }
             }

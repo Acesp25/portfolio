@@ -70,16 +70,22 @@ body {
 	gap: 32px;
 }
 
-#tab1-label, #tab2-label {
+#exp-label, 
+#proj-label,
+#about-label, 
+#read-label {
 	font-weight: bold;
+    font-size: 1.2em;
 	padding-bottom: 5px;
 	cursor: pointer;
 	transform: scale(1);
 	transition: transform .2s;
 }
 
-#tab1-input:checked ~ .tabs #tab1-label,
-#tab2-input:checked ~ .tabs #tab2-label {
+#exp-input:checked ~ .tabs #exp-label,
+#proj-input:checked ~ .tabs #proj-label,
+#about-input:checked ~ .tabs #about-label,
+#read-input:checked ~ .tabs #read-label {
 	transform: scale(1.2);
 }
 
@@ -99,16 +105,18 @@ body {
 	opacity: 0%;
 }
 
-#tab1-content {
+#exp-content, 
+#proj-content, 
+#about-content, 
+#read-content {
     transition: transform 0.5s, opacity 0.5s;
 }
 
-#tab2-content {
-    transition: transform 0.5s, opacity 0.5s;
-}
 
-#tab1-input:checked ~ .tab-content #tab1-content,
-#tab2-input:checked ~ .tab-content #tab2-content {
+#exp-input:checked ~ .tab-content #exp-content,
+#proj-input:checked ~ .tab-content #proj-content,
+#about-input:checked ~ .tab-content #about-content,
+#read-input:checked ~ .tab-content #read-content {
     position: relative;
     transform: translateX(0);
     opacity: 100%;
