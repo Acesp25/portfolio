@@ -7,7 +7,7 @@ const TEKRESCUE_LOGO: &str = "/public/images/experiences/tkrsc.png";
 
 pub fn experiences() -> Markup {
     html! {
-        .experience-container {
+        .body-container {
             (experience(
                 1,
                 "FreeBSD",

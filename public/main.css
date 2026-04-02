@@ -108,7 +108,7 @@ strong {
 }
 
 
-.experience-container {
+.body-container {
     display: flex;
     flex-direction: column;
     padding-left: var(--section-x-padding);
@@ -283,6 +283,11 @@ input[type="radio"] {
     font-size: 2em;
     cursor: pointer;
     color: var(--accent-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
 }
 
 .modal-header {
