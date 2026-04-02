@@ -126,6 +126,13 @@ strong {
     border-width: 5px;
     border-radius: 15px;
     border-style: solid;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer; /* lets make these boxes clickable for more info */
+}
+
+.experience:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--highlight-color);
 }
 
 .experience .logo-container img {
@@ -164,8 +171,15 @@ strong {
     padding: 5px;
 	cursor: pointer;
 	transform: scale(1);
-    border-bottom: 3px solid transparent;
-	transition: transform .2s, border-bottom .2s;
+	transition: transform .2s, border-bottom .2s ease-in-out;
+}
+
+#exp-label:hover,
+#proj-label:hover,
+#about-label:hover,
+#read-label:hover {
+    border-bottom: 5px solid var(--border-color);
+    transform: scale(1.1);
 }
 
 #exp-input:checked ~ .tabs #exp-label,
@@ -190,6 +204,7 @@ strong {
 	height: 100%;
 	transition: transform 0.5s, opacity 0.5s;
 	opacity: 0%;
+    visibility: hidden;
 }
 
 #exp-content, 
@@ -207,6 +222,7 @@ strong {
     position: relative;
     opacity: 100%;
     display: block;
+    visibility: visible;
 }
 
 input[type="radio"] {
