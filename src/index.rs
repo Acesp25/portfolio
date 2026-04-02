@@ -4,6 +4,7 @@ use css_minify::optimizations::{Level, Minifier};
 
 use crate::utils::intro::intro;
 use crate::utils::body::body;
+use crate::utils::footer::footer;
 
 #[get("/")]
 pub fn index() -> Markup {
@@ -13,6 +14,7 @@ pub fn index() -> Markup {
         html! {
             (intro())
             (body())
+            (footer())
         }
     )
 }

@@ -115,6 +115,14 @@ strong {
     padding-right: var(--section-x-padding);
     gap: 24px;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: var(--text-color);
 }
 
 .experience {
