@@ -124,10 +124,13 @@ strong {
     padding: 30px;
     border-color: var(--border-color);
     border-width: 5px;
-    border-radius: 15px;
+    border-radius: 40px;
     border-style: solid;
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer; /* lets make these boxes clickable for more info */
+    cursor: pointer;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
 }
 
 .experience:hover {
@@ -299,6 +302,7 @@ input[type="radio"] {
 
 .modal-header img {
     width: 60px;
+    filter: drop-shadow(0 0 5px #3d302a);
 }
 
 .modal-details {
