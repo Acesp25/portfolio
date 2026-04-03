@@ -17,8 +17,8 @@ pub fn projects() -> Markup {
                     p {
                         "This framework was a result from my GSoC project with FreeBSD"
                     }
-                    p { b { "Link: "} a href="https://github.com/Acesp25/rustkld" { "RustKLD Code" } }
-                }
+                },
+                "https://github.com/Acesp25/rustkld"
             ))
             (project(
                 2,
@@ -28,10 +28,9 @@ pub fn projects() -> Markup {
                 html! {
                     p {
                         "This project was to familarize myself with more advanced device drivers with FreeBSD. "
-                    }
-                    p { b { "Link: "} a href="https://github.com/Acesp25/vtgpio" { "VirtIO GPIO Code" } }                    
-                }
-
+                    }                   
+                },
+                "https://github.com/Acesp25/vtgpio"
             ))
             (project(
                 3,
@@ -43,8 +42,8 @@ pub fn projects() -> Markup {
                         "This project was to get myself introducted to socket programming with both C POSIX and Rust std::net. "
                         "It has a Rust server/client and a C server/client communicating back and forth to each other. "
                     }
-                    p { b { "Link: "} a href="https://github.com/Acesp25/pingpong" { "PingPong Code" }}
-                }
+                },
+                "https://github.com/Acesp25/pingpong"
             ))
             (project(
                 4,
@@ -55,8 +54,8 @@ pub fn projects() -> Markup {
                     p {
                         "This website was build in " b { "pure Rust" } " meaning no HTML, or Javascript used whatsoever!"
                     }
-                    p { b { "Link: "} a href="https://github.com/Acesp25/portfolio" { "Website Code" } }
-                }
+                },
+                "https://github.com/Acesp25/portfolio"
             ))
         }
     }
@@ -67,7 +66,8 @@ fn project(
     image: &str, 
     name: &str, 
     brief: &str, 
-    details: Markup
+    details: Markup,
+    link: &str
 ) -> Markup {
     let toggle_id = format!("proj-{}", id);
     html! {
@@ -95,6 +95,7 @@ fn project(
                 .proj-modal-details { 
                     p { (brief) }
                     (details)
+                    p { b { "Link: "} a href=(link) { (name) } }
                 }
             }
         }
