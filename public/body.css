@@ -89,7 +89,7 @@
 
 .experience:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 15px var(--highlight-color);
+    box-shadow: 0px 0px 15px var(--highlight-color);
 }
 
 .experience .logo-container img {
@@ -129,7 +129,7 @@ input[type="radio"] {
 
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s;
+    transition: opacity var(--transition-time) ease, visibility var(--transition-time);
 }
 
 .modal-backdrop {
@@ -150,7 +150,7 @@ input[type="radio"] {
     border-radius: 20px;
     width: 90%;
     max-width: 800px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 0px 20px var(--highlight-color);
     z-index: 1001;
 }
 
@@ -166,7 +166,7 @@ input[type="radio"] {
     font-size: 2em;
     cursor: pointer;
     color: var(--accent-color);
-    transition: transform 0.2s ease-in-out;
+    transition: transform var(--transition-time) ease-in-out;
 }
 
 .close-btn:hover {
@@ -200,7 +200,7 @@ input[type="radio"] {
     border: 5px solid var(--border-color);
     border-radius: 60px;
     background-color: transparent; /* Or var(--background-color) if needed */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform var(--transition-time) ease, box-shadow var(--transition-time) ease;
 }
 
 .stuff-photo .info-container,

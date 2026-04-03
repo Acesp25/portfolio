@@ -37,7 +37,7 @@ pub fn experiences() -> Markup {
                 html! {
                     p {
                         "Conducting research on deep learning techniques for GAN-based adversarial perturbation generation. "
-                        "The project focuses on utililzing modern Unet techniques to create effective and discreet adversarial perturbations that can preform obfusacion and impersonation attacks on facial recognition systems. "
+                        "The project focuses on utililzing modern UNet techniques to create effective and discreet adversarial perturbations that can preform obfusacion and impersonation attacks on facial recognition systems. "
                     }
                     p {
                         "Paper pending submission."

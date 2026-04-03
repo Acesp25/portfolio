@@ -26,6 +26,8 @@
 	--section-y-padding: 24px;
     
     --experience-logo-size: 100px;
+
+    --transition-time: 0.2s;
 }
 
 body {

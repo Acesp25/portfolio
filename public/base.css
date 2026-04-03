@@ -36,6 +36,11 @@
     flex: 1;
 }
 
+/* This is just for the Hello being centered */
+.left-column h1 {
+    display: flex;
+    justify-content: center;
+}
 
 .aura-container {
     display: flex;
