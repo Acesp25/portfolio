@@ -36,7 +36,11 @@ fn base(name: &str, desc: &str, content: Markup) -> Markup {
 
                 link rel="icon" type="image/ico" href="/public/images/me/aura.ico";
 
-				style { (include_css!("/main.css")) }
+				style { 
+                    (include_css!("/main.css"))
+                    (include_css!("/base.css"))
+                    (include_css!("/body.css"))
+                }
             }
 
             body {
