@@ -1,6 +1,6 @@
 use maud::{Markup, html};
 
-pub const AURA_IMG: &str = "/public/images/me/aura.jpeg";
+pub const HANDSOME_IMG: &str = "/public/images/me/introPFP.jpeg";
 
 pub fn intro() -> Markup {
     html! {
@@ -14,7 +14,7 @@ pub fn intro() -> Markup {
                 }      
                 .right-column {
                     .aura-container {
-                        img alt="Image of me aurafarming" src=(AURA_IMG);
+                        img alt="Image of my face" src=(HANDSOME_IMG);
                     }
                 }
             }

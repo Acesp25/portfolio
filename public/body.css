@@ -191,3 +191,40 @@ input[type="radio"] {
     padding-left: var(--section-x-padding);
     padding-right: var(--section-x-padding);
 }
+
+.stuff-photo, 
+.photo-stuff {
+    display: flex;
+    align-items: center;
+    padding: var(--about-padding);
+    border: 5px solid var(--border-color);
+    border-radius: 60px;
+    background-color: transparent; /* Or var(--background-color) if needed */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stuff-photo .info-container,
+.photo-stuff .info-container {
+    padding: var(--about-padding);
+}
+
+.stuff-photo img,
+.photo-stuff img {
+    width: 270px;
+    height: auto;
+    border-radius: 20%;
+    border-color: transparent;
+    padding: var(--about-padding);
+    filter: drop-shadow(0 0 5px #3d302a);
+}
+
+.stuff {
+    display: flex;
+    flex-direction: column;
+    padding: var(--about-padding);
+    border: 5px solid var(--border-color);
+    border-radius: 60px;
+}
+.stuff h3 {
+    align-self: center;
+}

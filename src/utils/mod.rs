@@ -3,3 +3,4 @@ pub mod body;
 pub mod footer;
 
 mod experiences;
+mod about;

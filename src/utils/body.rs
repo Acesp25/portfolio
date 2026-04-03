@@ -1,6 +1,7 @@
 use maud::{Markup, html};
 
 use crate::utils::experiences::experiences;
+use crate::utils::about::about;
 
 pub fn body() -> Markup {
     html! {
@@ -24,7 +25,7 @@ pub fn body() -> Markup {
                     p { "tab2 content" }
                 }
                 #about-content .tab {
-                    p { "tab3 content" }
+                    (about())
                 }
                 #read-content .tab {
                     p { "tab4 content" }
