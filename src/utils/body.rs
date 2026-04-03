@@ -1,6 +1,7 @@
 use maud::{Markup, html};
 
 use crate::utils::experiences::experiences;
+use crate::utils::projects::projects;
 use crate::utils::about::about;
 
 pub fn body() -> Markup {
@@ -22,7 +23,7 @@ pub fn body() -> Markup {
                     (experiences())
                 }
                 #proj-content .tab {
-                    p { "tab2 content" }
+                    (projects())
                 }
                 #about-content .tab {
                     (about())

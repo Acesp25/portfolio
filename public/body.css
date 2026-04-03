@@ -110,6 +110,58 @@
     margin: 0;
 }
 
+.project h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.project {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    border-color: var(--border-color);
+    border-width: 5px;
+    border-radius: 40px;
+    border-style: solid;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
+}
+
+.project:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 15px var(--highlight-color);
+}
+
+.proj-modal-header h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.project img {
+    width: 400px;
+    display: flex;
+    height: auto;
+    object-fit: contain;
+    justify-self: right;
+    border-radius: 40px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 5px #3d302a);
+}
+
+.project .info-container {
+    flex: 1;
+    gap: 4px;
+}
+
+.project .info-container h3, 
+.project .info-container p {
+    margin: 0;
+}
+
 input[type="radio"] {
 	display: none;
 }
@@ -139,7 +191,8 @@ input[type="radio"] {
     cursor: default;
 }
 
-.modal-content {
+.exp-modal-content,
+.proj-modal-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -154,7 +207,8 @@ input[type="radio"] {
     z-index: 1001;
 }
 
-.modal-state:checked + .experience + .modal-overlay {
+.modal-state:checked + .experience + .modal-overlay,
+.modal-state:checked + .project + .modal-overlay {
     opacity: 1;
     visibility: visible;
 }
@@ -173,19 +227,20 @@ input[type="radio"] {
     transform: scale(1.2);
 }
 
-.modal-header {
+.exp-modal-header {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
 }
 
-.modal-header img {
+.exp-modal-header img {
     width: 60px;
     filter: drop-shadow(0 0 5px #3d302a);
 }
 
-.modal-details {
+.exp-modal-details,
+.proj-modal-details {
     display: flex;
     flex-direction: column;
     padding-left: var(--section-x-padding);

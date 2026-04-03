@@ -79,7 +79,14 @@ pub fn experiences() -> Markup {
     }
 }
 
-fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Markup) -> Markup {
+fn experience(
+    id: i32, 
+    name: &str, 
+    title: &str, 
+    date: &str, 
+    logo: &str, 
+    info: Markup
+) -> Markup {
     let toggle_id = format!("modal-{}", id);
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
@@ -97,18 +104,18 @@ fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Ma
             }
         }
 
-        div class="modal-overlay" {
+        .modal-overlay {
             label for=(toggle_id) class="modal-backdrop" {};
             
-            div class="modal-content" {
+            .exp-modal-content {
                 label for=(toggle_id) class="close-btn" { "x" }
 
-                .modal-header {
+                .exp-modal-header {
                     img src=(logo) alt=(name);
                     h3 { (title) }
                     p.date { (date) }
                 }
-                .modal-details { 
+                .exp-modal-details { 
                     (info)
                 }
             }
