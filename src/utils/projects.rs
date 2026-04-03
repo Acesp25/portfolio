@@ -30,7 +30,7 @@ pub fn projects() -> Markup {
                         "This project was to familarize myself with more advanced device drivers with FreeBSD. "
                     }                   
                 },
-                "https://github.com/Acesp25/vtgpio"
+                "https://github.com/Acesp25/freebsd-src/tree/vtgpio_driver"
             ))
             (project(
                 3,

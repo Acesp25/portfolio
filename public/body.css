@@ -200,7 +200,7 @@ input[type="radio"] {
     background: var(--background-color);
     padding: 40px;
     border: 5px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 60px;
     width: 90%;
     max-width: 800px;
     box-shadow: 0 0px 20px var(--highlight-color);
@@ -220,6 +220,8 @@ input[type="radio"] {
     font-size: 2em;
     cursor: pointer;
     color: var(--accent-color);
+    padding-top: 5px;
+    padding-right: 10px;
     transition: transform var(--transition-time) ease-in-out;
 }
 

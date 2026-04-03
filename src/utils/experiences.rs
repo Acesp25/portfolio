@@ -87,7 +87,7 @@ fn experience(
     logo: &str, 
     info: Markup
 ) -> Markup {
-    let toggle_id = format!("modal-{}", id);
+    let toggle_id = format!("exp-{}", id);
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
 
