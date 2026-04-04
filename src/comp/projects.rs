@@ -55,13 +55,13 @@ pub fn projects() -> Markup {
                 4,
                 SETUP_IMG,
                 "FreeBSD Homelab",
-                "My personal FreeBSD multi-server setup and how it's used.",
+                "My personal FreeBSD setup and how it's used.",
                 html! {
                     p {
                         "I currently have two main FreeBSD servers setup. The larger one is used to manage many Bhyve VM's and Jails that are running some silly processes for me. "
                         "The smaller one is used as a NFS, which when combined with my wireguard tunnels allow me to have a personel cloud storage for any of my devices. "
                         "I also have some jails on that one but they're responsible for more lightweight tasks. "
-                        "There is a lot more nuance and responsiblites that I give to these servers. However, I just wanted to show off my larping as a sysadmin :P"
+                        "There is a lot more nuance and responsiblites that I give to these servers. I just wanted to show their existence :P "
                     }
                 }
             ))
@@ -72,8 +72,8 @@ pub fn projects() -> Markup {
                 "This very website you're looking at :)",
                 html! {
                     p {
-                        "This website was build in " b { "pure Rust" } " meaning no HTML, or Javascript used whatsoever!"
-                        "It was much to make, you should check it out :)"
+                        "This website was build in " b { "pure Rust" } " meaning no HTML, or Javascript used whatsoever! "
+                        "It was a lot of fun to make, you should check it out :)"
                     }
                     p { b { "Link: "} a href=("https://github.com/Acesp25/portfolio") { "Acesp25/portfolio" } }
                 }
