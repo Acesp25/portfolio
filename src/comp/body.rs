@@ -1,8 +1,8 @@
 use maud::{Markup, html};
 
-use crate::utils::experiences::experiences;
-use crate::utils::projects::projects;
-use crate::utils::about::about;
+use crate::comp::experiences::experiences;
+use crate::comp::projects::projects;
+use crate::comp::about::about;
 
 pub fn body() -> Markup {
     html! {

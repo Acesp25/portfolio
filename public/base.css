@@ -32,7 +32,13 @@
     margin-block: 40px;
 }
 
-.left-column, .right-column {
+.left-column {
+    flex: 1;
+    margin-right: -10em;
+    padding-left: 1em;
+}
+
+.right-column {
     flex: 1;
 }
 

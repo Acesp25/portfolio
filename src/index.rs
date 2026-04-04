@@ -2,9 +2,9 @@ use rocket::get;
 use maud::{Markup, html, DOCTYPE, PreEscaped};
 use css_minify::optimizations::{Level, Minifier};
 
-use crate::utils::intro::intro;
-use crate::utils::body::body;
-use crate::utils::footer::footer;
+use crate::comp::intro::intro;
+use crate::comp::body::body;
+use crate::comp::footer::footer;
 
 #[get("/")]
 pub fn index() -> Markup {

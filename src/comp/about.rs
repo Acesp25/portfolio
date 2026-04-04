@@ -21,10 +21,16 @@ pub fn about() -> Markup {
                 html! {
                     h3 { "Away from the computer" }
                     p {
-                        "When im not looking a computer screen, I enjoy competing in a vast majority of sports, "
-                        "especially fencing, soccer, tennis, and swimming. "
+                        "When im not looking a computer screen, I enjoy competing in a vast majority of sports. "
+                        "Especially fencing, soccer, tennis, and swimming. "
                         "I also enjoy reading books about my favorite computer topics, and occationally playing competitive video games. "
                     }
+                }
+           ))
+           (stuff_photo(
+                AURA_IMG,
+                html! {
+                    h3 { "" }
                 }
            ))
            (stuff(

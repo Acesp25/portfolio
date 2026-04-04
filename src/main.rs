@@ -7,7 +7,7 @@ use rocket::{launch, routes, fs::FileServer};
 #[macro_use]
 mod macros;
 
-mod utils;
+mod comp;
 mod index;
 
 #[launch]
