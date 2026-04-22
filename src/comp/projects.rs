@@ -3,6 +3,7 @@ use maud::{Markup, html};
 const RUSTKLD_IMG: &str = "/public/images/projects/rustkld.png";
 const VTGPIO_IMG: &str = "/public/images/projects/vtgpio.png";
 const SETUP_IMG: &str = "/public/images/projects/setup.jpg";
+const CRUSTOS_IMG: &str = "/public/images/projects/crustos.jpg";
 const PINGPONG_IMG: &str = "/public/images/projects/pingpong.jpg";
 const WEBSITE_IMG: &str = "/public/images/projects/website.png";
 
@@ -53,6 +54,18 @@ pub fn projects() -> Markup {
             ))
             (project(
                 4,
+                CRUSTOS_IMG,
+                "CRustOS",
+                "Simple practice OS that combines Rust and C",
+                html! {
+                    p {
+                        "Slowly adding to this project, I wanted to test the different possibilities of using both Rust and C early on when programming an OS. "
+                    }
+                    p { b { "Link: "} a href=("https://github.com/Acesp25/CRUSTOS") { "Acesp/crustos" } }
+                }
+            ))
+            (project(
+                5,
                 SETUP_IMG,
                 "FreeBSD Homelab",
                 "My personal FreeBSD setup and how it's used.",

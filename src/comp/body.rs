@@ -3,6 +3,7 @@ use maud::{Markup, html};
 use crate::comp::experiences::experiences;
 use crate::comp::projects::projects;
 use crate::comp::about::about;
+use crate::comp::reading::reading;
 
 pub fn body() -> Markup {
     html! {
@@ -29,7 +30,7 @@ pub fn body() -> Markup {
                     (about())
                 }
                 #read-content .tab {
-                    p { "tab4 content" }
+                    (reading())
                 }
             }
         }

@@ -1,6 +1,5 @@
 use maud::{Markup, html};
 
-const FACE_IMG: &str = "/public/images/about/face.jpg";
 const AURA_IMG: &str = "/public/images/about/aura.jpeg";
 const FENCING_IMG: &str = "/public/images/about/fencing.jpg";
 
@@ -8,7 +7,7 @@ pub fn about() -> Markup {
     html! {
         .body-container {
            (stuff_photo(
-                FACE_IMG,
+                AURA_IMG,
                 html! {
                     h3 { "About Me"}
                     p {
@@ -25,12 +24,6 @@ pub fn about() -> Markup {
                         "Especially fencing, soccer, tennis, and swimming. "
                         "I also enjoy reading books about my favorite computer topics, and occationally playing competitive video games. "
                     }
-                }
-           ))
-           (stuff_photo(
-                AURA_IMG,
-                html! {
-                    h3 { "" }
                 }
            ))
            (stuff(
