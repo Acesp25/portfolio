@@ -20,15 +20,15 @@
     --highlight-color: #ab9696;
 
     --border-color: #3d302a;
-    --border-width: 5px;
-    --border-radius: 60px;
+    --border-width: 0.35em;
+    --border-radius: 3.75em;
 
-    --section-max-width: 1050px;
-	--section-x-padding: 20px;
-    --about-padding: 30px;
-	--section-y-padding: 24px;
+    --section-max-width: 66em;
+	--section-x-padding: 1.25em;
+    --about-padding: 1.875em;
+	--section-y-padding: 1.5em;
     
-    --experience-logo-size: 100px;
+    --experience-logo-size: 6.25em;
 
     --transition-time: 0.2s;
 }
