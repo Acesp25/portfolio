@@ -12,7 +12,7 @@ pub fn reading() -> Markup {
                 h2 { "Currently Reading" }
                 (book(
                     BLINK_BOOK,
-                    "Blink: The Power of Thinking Without Thinking",
+                    "Blink",
                     "Malcolm Gladwell",
                     html! {
                         p {

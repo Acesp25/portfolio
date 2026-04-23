@@ -32,7 +32,7 @@ pub fn projects() -> Markup {
                 "VirtIO General Input/Output Driver for FreeBSD",
                 html! {
                     p {
-                        "This project was to familarize myself with more technical device drivers with FreeBSD. "
+                        "This project was to familiarize myself with more technical device drivers with FreeBSD. "
                         "It was designed using the Version 1.3 documentation provided by Oasis-Open. "
                         "Currently does not support the IRQ feature, it is a WIP."
                     } 
@@ -46,7 +46,7 @@ pub fn projects() -> Markup {
                 "Simple socket programming with both Rust and C",
                 html! {
                     p {
-                        "This project was to get myself introducted to socket programming with both C POSIX and Rust std::net. "
+                        "This project was to get myself introduced to socket programming with both C POSIX and Rust std::net. "
                         "It has a Rust server/client and a C server/client communicating back and forth to each other. "
                     }
                     p { b { "Link: "} a href=("https://github.com/Acesp25/pingpong") { "Acesp/pingpong" } }
@@ -72,9 +72,9 @@ pub fn projects() -> Markup {
                 html! {
                     p {
                         "I currently have two main FreeBSD servers setup. The larger one is used to manage many Bhyve VM's and Jails that are running some silly processes for me. "
-                        "The smaller one is used as a NFS, which when combined with my wireguard tunnels allow me to have a personel cloud storage for any of my devices. "
+                        "The smaller one is used as a NFS, which when combined with Wireguard tunnels allow me to have a personal cloud storage for any of my devices. "
                         "I also have some jails on that one but they're responsible for more lightweight tasks. "
-                        "There is a lot more nuance and responsiblites that I give to these servers. I just wanted to show their existence :P "
+                        "There is a lot more nuance and responsible that I give to these servers. I just wanted to show their existence :P "
                     }
                 }
             ))

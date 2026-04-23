@@ -2,6 +2,7 @@ use maud::{Markup, html};
 
 const AURA_IMG: &str = "/public/images/about/aura.jpeg";
 const FENCING_IMG: &str = "/public/images/about/fencing.jpg";
+const AEAPEX_IMG: &str = "/public/images/about/ae-apex.png";
 
 pub fn about() -> Markup {
     html! {
@@ -11,7 +12,9 @@ pub fn about() -> Markup {
                 html! {
                     h3 { "About Me"}
                     p {
-                        "Not sure what to put here for now ngl, I do things, I like things, I am a person. "
+                        "I am a student at Texas State University pursuing Computer Science "
+                        "Applied Math and Chinese. I currently am a deep learning researcher for my university "
+                        "while creating low level OS projects with FreeBSD on the side. "
                     }
                 }
            ))
@@ -21,17 +24,29 @@ pub fn about() -> Markup {
                     h3 { "Away from the computer" }
                     p {
                         "When im not looking a computer screen, I enjoy competing in a vast majority of sports. "
-                        "Especially fencing, soccer, tennis, and swimming. "
-                        "I also enjoy reading books about my favorite computer topics, and occationally playing competitive video games. "
+                        "My current fixations are foil fencing, soccer, tennis, and swimming. "
+                        "I also enjoy reading books about my favorite computer topics, and occasionally playing "
+                        "competitive video games (Counter-Strike :D). "
                     }
                 }
+           ))
+           (stuff_photo(
+               AEAPEX_IMG,
+               html! {
+                   h3 { "More fun things" }
+                   p {
+                       "Having a creative outlet is very important to me. Whenever it's not programming, "
+                       " I love expressing my creativity through editing in After Effects. "
+                       "Although, most of the projects I work on end up being scrapped. "
+                   }
+               }
            ))
            (stuff(
                 html! {
                     h3 { "Technical Stack" }
                     p { 
                         b { "Languages: " } 
-                        "Rust, C, Python, Java, Bash, Assembly (x86/64) " 
+                        "Rust, C, Python, Java, Bash, Assembly (Mips, x86/64) " 
                     }
                     p { 
                         b { "Systems Programming: " } 
@@ -51,7 +66,7 @@ pub fn about() -> Markup {
                     }
                     p { 
                         b { "Tools: " } 
-                        "Vim, Visual Studio Code, Git, DTrace, Wireshark " 
+                        "Vim, Visual Studio Code, Git, DTrace, GDB, Wireshark " 
                     }
                 }
            ))

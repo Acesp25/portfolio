@@ -37,7 +37,7 @@ pub fn experiences() -> Markup {
                 html! {
                     p {
                         "Conducting research on deep learning techniques for GAN-based adversarial perturbation generation. "
-                        "The project focuses on utililzing modern UNet techniques to create effective and discreet adversarial perturbations that can preform obfusacion and impersonation attacks on facial recognition systems. "
+                        "The project focuses on utilizing modern UNet techniques to create effective and discreet adversarial perturbations that can preform obfusacion and impersonation attacks on facial recognition systems. "
                     }
                     p {
                         "Paper pending submission."
@@ -71,7 +71,7 @@ pub fn experiences() -> Markup {
                 html! {
                    p {
                         "I was responsible for preforming weekly maintenance on a variety of computer systems for both large and small clients. "
-                        "I was also occationally tasked with customizing severs and preforming on-sight troubleshooting. "
+                        "I was also occasionally tasked with customizing severs and preforming on-sight troubleshooting. "
                    } 
                 }
             ))
