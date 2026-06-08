@@ -3,7 +3,6 @@ use maud::{Markup, html};
 const RUSTKLD_IMG: &str = "/public/images/projects/rustkld.png";
 const VTGPIO_IMG: &str = "/public/images/projects/vtgpio.png";
 const SETUP_IMG: &str = "/public/images/projects/setup.jpg";
-const CRUSTOS_IMG: &str = "/public/images/projects/crustos.jpg";
 const PINGPONG_IMG: &str = "/public/images/projects/pingpong.jpg";
 const WEBSITE_IMG: &str = "/public/images/projects/website.png";
 
@@ -35,8 +34,8 @@ pub fn projects() -> Markup {
                         "This project was to familiarize myself with more technical device drivers with FreeBSD. "
                         "It was designed using the Version 1.3 documentation provided by Oasis-Open. "
                         "Currently does not support the IRQ feature, it is a WIP."
-                    } 
-                    p { b { "Link: "} a href=("https://github.com/Acesp25/freebsd-src/tree/vtgpio_driver") { "Acesp/vtgpio" } }                  
+                    }
+                    p { b { "Link: "} a href=("https://github.com/Acesp25/freebsd-src/tree/vtgpio_driver") { "Acesp/vtgpio" } }
                 }
             ))
             (project(
@@ -54,18 +53,6 @@ pub fn projects() -> Markup {
             ))
             (project(
                 4,
-                CRUSTOS_IMG,
-                "CRustOS",
-                "Simple practice OS that combines Rust and C",
-                html! {
-                    p {
-                        "Slowly adding to this project, I wanted to test the different possibilities of using both Rust and C early on when programming an OS. "
-                    }
-                    p { b { "Link: "} a href=("https://github.com/Acesp25/CRUSTOS") { "Acesp/crustos" } }
-                }
-            ))
-            (project(
-                5,
                 SETUP_IMG,
                 "FreeBSD Homelab",
                 "My personal FreeBSD setup and how it's used.",
@@ -95,13 +82,7 @@ pub fn projects() -> Markup {
     }
 }
 
-fn project(
-    id: i32, 
-    image: &str, 
-    name: &str, 
-    brief: &str, 
-    details: Markup
-) -> Markup {
+fn project(id: i32, image: &str, name: &str, brief: &str, details: Markup) -> Markup {
     let toggle_id = format!("proj-{}", id);
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
@@ -118,14 +99,14 @@ fn project(
 
         .modal-overlay {
             label for=(toggle_id) class="modal-backdrop" {};
-            
+
             .proj-modal-content {
                 label for=(toggle_id) class="close-btn" { "x" }
 
                 .proj-modal-header {
                     h2 { (name) }
                 }
-                .proj-modal-details { 
+                .proj-modal-details {
                     p { (brief) }
                     (details)
                 }
@@ -133,3 +114,4 @@ fn project(
         }
     }
 }
+

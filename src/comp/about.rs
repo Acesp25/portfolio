@@ -12,9 +12,9 @@ pub fn about() -> Markup {
                 html! {
                     h3 { "About Me"}
                     p {
-                        "I am a student at Texas State University pursuing Computer Science "
-                        "Applied Math and Chinese. I currently am a deep learning researcher for my university "
-                        "while creating low level OS projects with FreeBSD on the side. "
+                        "I am a student at Texas State University pursuing Computer Science, "
+                        "Applied Math, and Chinese. I currently am a deep learning researcher for my university "
+                        "while persuing FreeBSD projects on the side. "
                     }
                 }
            ))
@@ -24,9 +24,9 @@ pub fn about() -> Markup {
                     h3 { "Away from the computer" }
                     p {
                         "When im not looking a computer screen, I enjoy competing in a vast majority of sports. "
-                        "My current fixations are foil fencing, soccer, tennis, and swimming. "
-                        "I also enjoy reading books about my favorite computer topics, and occasionally playing "
-                        "competitive video games (Counter-Strike :D). "
+                        "My current fixations are fencing foil, soccer, tennis, and swimming. "
+                        "I also enjoy reading books about my favorite computer topics, and playing "
+                        "competitive video games. "
                     }
                 }
            ))
@@ -36,7 +36,7 @@ pub fn about() -> Markup {
                    h3 { "More fun things" }
                    p {
                        "Having a creative outlet is very important to me. Whenever it's not programming, "
-                       " I love expressing my creativity through editing in After Effects. "
+                       " I love expressing my creativity through editing videos in After Effects. "
                        "Although, most of the projects I work on end up being scrapped. "
                    }
                }
@@ -44,29 +44,29 @@ pub fn about() -> Markup {
            (stuff(
                 html! {
                     h3 { "Technical Stack" }
-                    p { 
-                        b { "Languages: " } 
-                        "Rust, C, Python, Java, Bash, Assembly (Mips, x86/64) " 
+                    p {
+                        b { "Languages: " }
+                        "C, Rust, Python, Java, Bash, Assembly (Mips, x86/64) "
                     }
-                    p { 
-                        b { "Systems Programming: " } 
-                        "FreeBSD Drivers, POSIX (pthreads, sockets, IPC), ATF and Kyua testing " 
+                    p {
+                        b { "Systems Programming: " }
+                        "FreeBSD Drivers, POSIX (pthreads, sockets, IPC), ATF and Kyua testing "
                     }
-                    p { 
-                        b { "AI & ML: " } 
-                        "PyTorch, TensorFlow, UNets, GANs " 
+                    p {
+                        b { "AI & ML: " }
+                        "PyTorch, TensorFlow, UNets, GANs "
                     }
                     p {
                         b { "Networking: " }
                         "PF, iptables, Unbound, Tailscale "
                     }
-                    p { 
-                        b { "Environments & Virtualization: " } 
-                        "FreeBSD, Linux, Bhyve, QEMU, Jails " 
+                    p {
+                        b { "Environments & Virtualization: " }
+                        "FreeBSD, Linux, Bhyve, QEMU, Jails "
                     }
-                    p { 
-                        b { "Tools: " } 
-                        "Vim, Visual Studio Code, Git, DTrace, GDB, Wireshark " 
+                    p {
+                        b { "Tools: " }
+                        "Vim, Visual Studio Code, Git, DTrace, GDB, Wireshark "
                     }
                 }
            ))
@@ -90,7 +90,7 @@ fn stuff_photo(photo: &str, stuff: Markup) -> Markup {
             }
             .logo-container {
                 img src=(photo) alt="Photo";
-            }            
+            }
         }
     }
 }

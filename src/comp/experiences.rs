@@ -11,23 +11,15 @@ pub fn experiences() -> Markup {
             (experience(
                 1,
                 "FreeBSD",
-                "Google Summer of Code Student",
-                "May 2025 - Sept 2025",
+                "Voluenteer",
+                "January 2026 - Present",
                 FREEBSD_LOGO,
                 html! {
                     p {
-                        "Project focused on the testing and development for FreeBSD Rust kernel device drivers. "
-                        "The outcome was a modular Rust framework for developing Rust based FreeBSD kernel device drivers, along with a testing suite to ensure reliability and performance. "
-                    }                    
-                    p {
-                        "Detailed writeup: " a href="https://gist.github.com/Acesp25/8928e35e710fdce1896b5448fc6327df" { "Acesp25/gsoc2025" }
-                    }
-                    p {
-                        "Official FreeBSD video: " a href="https://youtu.be/y82-t1tDLWg?si=7ad9fqQwQmaaZdQp" { "FreeBSD GSoC 2025 - Aaron Espinoza" }
+                        "Currently fixated on making a FreeBSD implementation of OpenBSD's veb(4) driver."
                     }
                 }
             ))
-
             (experience(
                 2,
                 "Texas State University",
@@ -44,15 +36,33 @@ pub fn experiences() -> Markup {
                     }
                 }
             ))
-
             (experience(
                 3,
+                "FreeBSD",
+                "Google Summer of Code Student",
+                "May 2025 - Sept 2025",
+                FREEBSD_LOGO,
+                html! {
+                    p {
+                        "Project focused on the testing and development for FreeBSD Rust kernel device drivers. "
+                        "The outcome was a modular Rust framework for developing Rust based FreeBSD kernel device drivers, along with a testing suite to ensure reliability and performance. "
+                    }
+                    p {
+                        "Detailed writeup: " a href="https://gist.github.com/Acesp25/8928e35e710fdce1896b5448fc6327df" { "Acesp25/gsoc2025" }
+                    }
+                    p {
+                        "Official FreeBSD video: " a href="https://youtu.be/y82-t1tDLWg?si=7ad9fqQwQmaaZdQp" { "FreeBSD GSoC 2025 - Aaron Espinoza" }
+                    }
+                }
+            ))
+            (experience(
+                4,
                 "Guangdong People's Provincial Hospital",
                 "Medical AI Research Intern",
                 "May 2024 - Aug 2024",
                 GPPHOSPITAL_LOGO,
                 html! {
-                    p { 
+                    p {
                         "Won 1st place in the 2024 MICCAI WHS++ Challenge. "
                         "Created ensembled deep learning models for accurate whole heart segmentation in CT and MRI scans. "
                     }
@@ -61,9 +71,8 @@ pub fn experiences() -> Markup {
                     }
                 }
             ))
-
             (experience(
-                4,
+                5,
                 "tekRESCUE",
                 "Maintenance Technician",
                 "Aug 2022 - May 2024",
@@ -72,21 +81,14 @@ pub fn experiences() -> Markup {
                    p {
                         "I was responsible for preforming weekly maintenance on a variety of computer systems for both large and small clients. "
                         "I was also occasionally tasked with customizing severs and preforming on-sight troubleshooting. "
-                   } 
+                   }
                 }
             ))
         }
     }
 }
 
-fn experience(
-    id: i32, 
-    name: &str, 
-    title: &str, 
-    date: &str, 
-    logo: &str, 
-    info: Markup
-) -> Markup {
+fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Markup) -> Markup {
     let toggle_id = format!("exp-{}", id);
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
@@ -106,7 +108,7 @@ fn experience(
 
         .modal-overlay {
             label for=(toggle_id) class="modal-backdrop" {};
-            
+
             .exp-modal-content {
                 label for=(toggle_id) class="close-btn" { "x" }
 
@@ -115,10 +117,11 @@ fn experience(
                     h3 { (title) }
                     p.date { (date) }
                 }
-                .exp-modal-details { 
+                .exp-modal-details {
                     (info)
                 }
             }
         }
     }
 }
+
