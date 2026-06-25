@@ -1,27 +1,28 @@
 use maud::{Markup, html};
 
-const FREEBSD_LOGO: &str = "/public/images/experiences/fbsd.png";
-const GPPHOSPITAL_LOGO: &str = "/public/images/experiences/gpph.png";
-const TXST_LOGO: &str = "/public/images/experiences/txst.png";
-const TEKRESCUE_LOGO: &str = "/public/images/experiences/tkrsc.png";
+const FREEBSD_LOGO: &str = "fbsd.png";
+const GPPHOSPITAL_LOGO: &str = "gpph.png";
+const TXST_LOGO: &str = "txst.png";
+const TEKRESCUE_LOGO: &str = "tkrsc.png";
 
 pub fn experiences() -> Markup {
     html! {
         .body-container {
             (experience(
-                1,
                 "FreeBSD",
-                "Voluenteer",
+                "Voluenteer/Contributor",
                 "January 2026 - Present",
                 FREEBSD_LOGO,
                 html! {
+                    p {
+                        "Mainly interested in Device Drivers."
+                    }
                     p {
                         "Currently fixated on making a FreeBSD implementation of OpenBSD's veb(4) driver."
                     }
                 }
             ))
             (experience(
-                2,
                 "Texas State University",
                 "Deep Learning Researcher",
                 "Aug 2024 - Present",
@@ -37,7 +38,6 @@ pub fn experiences() -> Markup {
                 }
             ))
             (experience(
-                3,
                 "FreeBSD",
                 "Google Summer of Code Student",
                 "May 2025 - Sept 2025",
@@ -48,7 +48,7 @@ pub fn experiences() -> Markup {
                         "The outcome was a modular Rust framework for developing Rust based FreeBSD kernel device drivers, along with a testing suite to ensure reliability and performance. "
                     }
                     p {
-                        "Detailed writeup: " a href="https://gist.github.com/Acesp25/8928e35e710fdce1896b5448fc6327df" { "Acesp25/gsoc2025" }
+                        "Writeup: " a href="https://gist.github.com/Acesp25/8928e35e710fdce1896b5448fc6327df" { "Acesp25/gsoc2025" }
                     }
                     p {
                         "Official FreeBSD video: " a href="https://youtu.be/y82-t1tDLWg?si=7ad9fqQwQmaaZdQp" { "FreeBSD GSoC 2025 - Aaron Espinoza" }
@@ -56,7 +56,6 @@ pub fn experiences() -> Markup {
                 }
             ))
             (experience(
-                4,
                 "Guangdong People's Provincial Hospital",
                 "Medical AI Research Intern",
                 "May 2024 - Aug 2024",
@@ -72,7 +71,6 @@ pub fn experiences() -> Markup {
                 }
             ))
             (experience(
-                5,
                 "tekRESCUE",
                 "Maintenance Technician",
                 "Aug 2022 - May 2024",
@@ -80,7 +78,7 @@ pub fn experiences() -> Markup {
                 html! {
                    p {
                         "I was responsible for preforming weekly maintenance on a variety of computer systems for both large and small clients. "
-                        "I was also occasionally tasked with customizing severs and preforming on-sight troubleshooting. "
+                        "I was also occasionally tasked with customizing severs and preforming on-sight troubleshooting for clients. "
                    }
                 }
             ))
@@ -88,14 +86,16 @@ pub fn experiences() -> Markup {
     }
 }
 
-fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Markup) -> Markup {
-    let toggle_id = format!("exp-{}", id);
+fn experience(name: &str, title: &str, date: &str, logo: &str, info: Markup) -> Markup {
+    let toggle_id = format!("exp-{}", name);
+    let logo_img = format!("/public/images/experiences/{logo}");
+
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
 
         label for=(toggle_id) class="experience" {
             .logo-container {
-                img alt=(name) src=(logo);
+                img src=(logo_img) alt=(name);
             }
             .info-container {
                 .header-row {
@@ -113,7 +113,7 @@ fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Ma
                 label for=(toggle_id) class="close-btn" { "x" }
 
                 .exp-modal-header {
-                    img src=(logo) alt=(name);
+                    img src=(logo_img) alt=(name);
                     h3 { (title) }
                     p.date { (date) }
                 }
@@ -124,4 +124,3 @@ fn experience(id: i32, name: &str, title: &str, date: &str, logo: &str, info: Ma
         }
     }
 }
-

@@ -1,16 +1,16 @@
 use maud::{Markup, html};
 
-const RUSTKLD_IMG: &str = "/public/images/projects/rustkld.png";
-const VTGPIO_IMG: &str = "/public/images/projects/vtgpio.png";
-const SETUP_IMG: &str = "/public/images/projects/setup.jpg";
-const PINGPONG_IMG: &str = "/public/images/projects/pingpong.jpg";
-const WEBSITE_IMG: &str = "/public/images/projects/website.png";
+const RUSTKLD_IMG: &str = "rustkld.png";
+const VEB_IMG: &str = "veb.png";
+const VTGPIO_IMG: &str = "vtgpio.png";
+const SETUP_IMG: &str = "setup.jpg";
+const PINGPONG_IMG: &str = "pingpong.jpg";
+const WEBSITE_IMG: &str = "website.png";
 
 pub fn projects() -> Markup {
     html! {
         .body-container {
             (project(
-                1,
                 RUSTKLD_IMG,
                 "RustKLD",
                 "Rust repo for making FreeBSD device drivers",
@@ -18,28 +18,37 @@ pub fn projects() -> Markup {
                     p {
                         "This framework was a result from my GSoC project with FreeBSD. "
                         "It allows developers to easily create their own Rust device drivers for FreeBSD. "
-                        "Includes a modular, expandable structure with Cirrus-CI integration and "
+                        "Includes a modular, expandable structure with CI integration and "
                         "documentation to further assist developers wanting to learn and work with it. "
                     }
                     p { b { "Link: "} a href=("https://github.com/Acesp25/rustkld") { "Acesp/rustkld" } }
                 }
             ))
             (project(
-                2,
+                VEB_IMG,
+                "VEB",
+                "Virtual Ethernet Bridge network psudo-device",
+                html! {
+                    p {
+                        "WIP, I started this project to learn more about network drivers and the network stack altogeather."
+                    }
+                }
+            ))
+            (project(
                 VTGPIO_IMG,
                 "VirtIO GPIO",
                 "VirtIO General Input/Output Driver for FreeBSD",
                 html! {
                     p {
-                        "This project was to familiarize myself with more technical device drivers with FreeBSD. "
-                        "It was designed using the Version 1.3 documentation provided by Oasis-Open. "
+                        "This project was to familiarize myself with more technical device drivers for FreeBSD. "
+                        "It was designed using the Version 1.3 documentation provided by Oasis-Open."
+                        "I originally wrote it in C, however I plan to make a Rust version for fun."
                         "Currently does not support the IRQ feature, it is a WIP."
                     }
                     p { b { "Link: "} a href=("https://github.com/Acesp25/freebsd-src/tree/vtgpio_driver") { "Acesp/vtgpio" } }
                 }
             ))
             (project(
-                3,
                 PINGPONG_IMG,
                 "PingPong",
                 "Simple socket programming with both Rust and C",
@@ -52,7 +61,6 @@ pub fn projects() -> Markup {
                 }
             ))
             (project(
-                4,
                 SETUP_IMG,
                 "FreeBSD Homelab",
                 "My personal FreeBSD setup and how it's used.",
@@ -66,7 +74,6 @@ pub fn projects() -> Markup {
                 }
             ))
             (project(
-                5,
                 WEBSITE_IMG,
                 "Portfolio Website",
                 "This very website you're looking at :)",
@@ -82,8 +89,10 @@ pub fn projects() -> Markup {
     }
 }
 
-fn project(id: i32, image: &str, name: &str, brief: &str, details: Markup) -> Markup {
-    let toggle_id = format!("proj-{}", id);
+fn project(image: &str, name: &str, brief: &str, details: Markup) -> Markup {
+    let toggle_id = format!("proj-{name}");
+    let proj_img = format!("public/images/projects/{image}");
+
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";
 
@@ -93,7 +102,7 @@ fn project(id: i32, image: &str, name: &str, brief: &str, details: Markup) -> Ma
                 p { (brief) }
             }
             .logo-container {
-                img alt=(name) src=(image);
+                img alt=(name) src=(proj_img);
             }
         }
 
@@ -114,4 +123,3 @@ fn project(id: i32, image: &str, name: &str, brief: &str, details: Markup) -> Ma
         }
     }
 }
-

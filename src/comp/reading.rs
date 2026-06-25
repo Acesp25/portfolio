@@ -1,9 +1,11 @@
 use maud::{Markup, html};
 
-const BLINK_BOOK: &str = "/public/images/reading/blink.jpg";
-const HOUSE_BOOK: &str = "/public/images/reading/house.jpg";
-const TOSELL_BOOK: &str = "/public/images/reading/tosell.jpg";
-const UNDERSTANDING_BOOK: &str = "/public/images/reading/understandingprogrammer.jpg";
+const BLINK_BOOK: &str = "blink.jpg";
+const NOTESFROM_BOOK: &str = "notesfromunder.jpg";
+const HOUSE_BOOK: &str = "house.jpg";
+const TOSELL_BOOK: &str = "tosell.jpg";
+const UNDERSTANDING_BOOK: &str = "understandingprogrammer.jpg";
+const NINETEEN84_BOOK: &str = "1984.jpg";
 
 pub fn reading() -> Markup {
     html! {
@@ -11,29 +13,22 @@ pub fn reading() -> Markup {
             .reading-list {
                 h2 { "Currently Reading" }
                 (book(
+                    NOTESFROM_BOOK,
+                    "Notes From the Underground",
+                    "Fyodor Dostoevsky",
+                    html! {}
+                ))
+                (book(
                     BLINK_BOOK,
                     "Blink",
                     "Malcolm Gladwell",
-                    html! {
-                        p {
-                            "It has been very enjoyable so far with lots of fun anecdotes to 
-                            compliment the author's points."
-                        }
-                    }
+                    html! {}
                 ))
                 (book(
                     HOUSE_BOOK,
                     "House of Leaves",
                     "Mark Z. Danielewski",
-                    html! {
-                        p {
-                            "I, like many other readers, was inspired to start reading this book 
-                            after watching the myhouse.wad video essay. 
-                            I really enjoy the rich vocabulary and unique narrative structure. 
-                            Anytime I sit myself down to continue reading, 
-                            I find myself bringing a dictionary with me just in case :)"
-                        }
-                    }
+                    html! {}
                 ))
             }
             .reading-list {
@@ -53,11 +48,21 @@ pub fn reading() -> Markup {
                     "Gerald M. Weinberg",
                     html! {
                         p {
-                            "Although this book was written almost 40 years ago, 
+                            "Although this book was written almost 40 years ago,
                             it was oddly comforting to see that the same struggles 
                             for programmers back then are still relevant today. 
                             Thinking about it again, maybe it's more disappointing than comforting. 
-                            Nonetheless, It's a must read for programmers and managers at any level." 
+                            Nonetheless, I recommend it for programmers and managers of them." 
+                        }
+                    }
+                ))
+                (book(
+                    NINETEEN84_BOOK,
+                    "1984",
+                    "George Orwell",
+                    html! {
+                        p {
+                            "Does this one need an explanation?"
                         }
                     }
                 ))
@@ -67,10 +72,12 @@ pub fn reading() -> Markup {
 }
 
 fn book(cover: &str, title: &str, author: &str, thoughts: Markup) -> Markup {
+    let book_cover = format!("/public/images/reading/{cover}");
+
     html! {
         .book {
             .book-cover {
-                img src=(cover) alt=(title);
+                img src=(book_cover) alt=(title);
             }
             .book-info {
                 h3 { (title) }

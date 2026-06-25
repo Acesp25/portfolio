@@ -1,8 +1,8 @@
 use maud::{Markup, html};
 
-const AURA_IMG: &str = "/public/images/about/aura.jpeg";
-const FENCING_IMG: &str = "/public/images/about/fencing.jpg";
-const AEAPEX_IMG: &str = "/public/images/about/ae-apex.png";
+const AURA_IMG: &str = "aura.jpeg";
+const FENCING_IMG: &str = "fencing.jpg";
+const AEAPEX_IMG: &str = "ae-apex.png";
 
 pub fn about() -> Markup {
     html! {
@@ -83,23 +83,27 @@ fn stuff(stuff: Markup) -> Markup {
 }
 
 fn stuff_photo(photo: &str, stuff: Markup) -> Markup {
+    let pic = format!("public/images/about/{photo}");
+
     html! {
         .stuff-photo {
             .info-container {
                 (stuff)
             }
             .logo-container {
-                img src=(photo) alt="Photo";
+                img src=(pic) alt="Photo";
             }
         }
     }
 }
 
 fn photo_stuff(photo: &str, stuff: Markup) -> Markup {
+    let pic = format!("public/images/about/{photo}");
+
     html! {
         .photo-stuff {
             .logo-container {
-                img src=(photo) alt="Image";
+                img src=(pic) alt="Image";
             }
             .info-container {
                 (stuff)
