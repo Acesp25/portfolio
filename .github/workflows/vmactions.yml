@@ -27,7 +27,7 @@ jobs:
       - name: Setup Environment
         shell: freebsd {0}
         run: |
-          pkg install rust
+          pkg install -y rust
           . "$HOME/.cargo/env"
       - name: Build Website
         shell: freebsd {0}
