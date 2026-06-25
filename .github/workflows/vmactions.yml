@@ -27,8 +27,6 @@ jobs:
       - name: Setup Environment
         shell: freebsd {0}
         run: |
-          pkg install -y git
-          git clone --depth=1 --branch stable/15 https://github.com/freebsd/freebsd-src.git $HOME/freebsd-src
           fetch https://sh.rustup.rs -o rustup.sh
           sh rustup.sh -y --profile=minimal
           . "$HOME/.cargo/env"
@@ -36,5 +34,9 @@ jobs:
         shell: freebsd {0}
         run: |
           . "$HOME/.cargo/env"
-          cargo build
-          cargo clean
+          cargo build --verbose
+      - name: Run Clippy
+        shell: freebsd {0}
+        run: |
+          . "$HOME/.cargo/env"
+          cargo clippy --verbose
