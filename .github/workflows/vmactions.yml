@@ -40,4 +40,5 @@ jobs:
         shell: freebsd {0}
         run: |
           . "$HOME/.cargo/env"
+          rustup component add clippy
           cargo clippy --verbose
