@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - freebsd_version: "15.0"
+    name: FreeBSD ${{ matrix.freebsd_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start FreeBSD VM
+        uses: vmactions/freebsd-vm@v1
+        with:
+          release: ${{ matrix.freebsd_version }}
+          usesh: true
+      - name: Setup Environment
+        shell: freebsd {0}
+        run: |
+          pkg install -y git
+          git clone --depth=1 --branch stable/15 https://github.com/freebsd/freebsd-src.git $HOME/freebsd-src
+          fetch https://sh.rustup.rs -o rustup.sh
+          sh rustup.sh -y --profile=minimal
+          . "$HOME/.cargo/env"
+      - name: Build Website
+        shell: freebsd {0}
+        run: |
+          . "$HOME/.cargo/env"
+          cargo build
+          cargo clean
