@@ -27,8 +27,7 @@ jobs:
       - name: Setup Environment
         shell: freebsd {0}
         run: |
-          fetch https://sh.rustup.rs -o rustup.sh
-          sh rustup.sh -y --profile=minimal
+          pkg install rust
           . "$HOME/.cargo/env"
       - name: Build Website
         shell: freebsd {0}
