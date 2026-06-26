@@ -6,6 +6,7 @@ const HOUSE_BOOK: &str = "house.jpg";
 const TOSELL_BOOK: &str = "tosell.jpg";
 const UNDERSTANDING_BOOK: &str = "understandingprogrammer.jpg";
 const NINETEEN84_BOOK: &str = "1984.jpg";
+const THETRIPLE_BOOK: &str = "thetriple.jpg";
 
 pub fn reading() -> Markup {
     html! {
@@ -37,6 +38,12 @@ pub fn reading() -> Markup {
                     TOSELL_BOOK,
                     "To Sell is Human",
                     "Daniel H. Pink",
+                    html! {}
+                ))
+                (book(
+                    THETRIPLE_BOOK,
+                    "The Triple Package",
+                    "Amy Chua, Jeb Rubenfeld",
                     html! {}
                 ))
             }

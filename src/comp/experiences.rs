@@ -10,7 +10,7 @@ pub fn experiences() -> Markup {
         .body-container {
             (experience(
                 "FreeBSD",
-                "Voluenteer/Contributor",
+                "Volunteer/Contributor",
                 "January 2026 - Present",
                 FREEBSD_LOGO,
                 html! {
@@ -30,7 +30,7 @@ pub fn experiences() -> Markup {
                 html! {
                     p {
                         "Conducting research on deep learning techniques for GAN-based adversarial perturbation generation. "
-                        "The project focuses on utilizing modern UNet techniques to create effective and discreet adversarial perturbations that can preform obfusacion and impersonation attacks on facial recognition systems. "
+                        "The project focuses on utilizing modern UNet techniques to create effective and discreet adversarial perturbations that can perform impersonation attacks on facial recognition systems. "
                     }
                     p {
                         "Paper pending submission."
@@ -77,8 +77,8 @@ pub fn experiences() -> Markup {
                 TEKRESCUE_LOGO,
                 html! {
                    p {
-                        "I was responsible for preforming weekly maintenance on a variety of computer systems for both large and small clients. "
-                        "I was also occasionally tasked with customizing severs and preforming on-sight troubleshooting for clients. "
+                        "I was responsible for performing weekly maintenance on a variety of computer systems for both large and small clients. "
+                        "I was also occasionally tasked with customizing severs and performing on-sight troubleshooting for clients. "
                    }
                 }
             ))
@@ -87,7 +87,13 @@ pub fn experiences() -> Markup {
 }
 
 fn experience(name: &str, title: &str, date: &str, logo: &str, info: Markup) -> Markup {
-    let toggle_id = format!("exp-{}", name);
+    let dirty = format!("exp-{name}-{title}");
+    let toggle_id = dirty
+        .chars()
+        .filter(|c| c.is_alphanumeric())
+        .collect::<String>()
+        .to_lowercase();
+
     let logo_img = format!("/public/images/experiences/{logo}");
 
     html! {

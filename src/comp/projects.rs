@@ -26,11 +26,11 @@ pub fn projects() -> Markup {
             ))
             (project(
                 VEB_IMG,
-                "VEB",
-                "Virtual Ethernet Bridge network psudo-device",
+                "Veb",
+                "Virtual Ethernet Bridge network pseudo-device for FreeBSD",
                 html! {
                     p {
-                        "WIP, I started this project to learn more about network drivers and the network stack altogeather."
+                        "WIP, I started this project to learn more about network drivers and the network stack altogether."
                     }
                 }
             ))
@@ -62,14 +62,14 @@ pub fn projects() -> Markup {
             ))
             (project(
                 SETUP_IMG,
-                "FreeBSD Homelab",
-                "My personal FreeBSD setup and how it's used.",
+                "FreeBSD Setup",
+                "How I use FreeBSD in my routine",
                 html! {
                     p {
-                        "I currently have two main FreeBSD servers setup. The larger one is used to manage many Bhyve VM's and Jails that are running some silly processes for me. "
-                        "The smaller one is used as a NFS, which when combined with Wireguard tunnels allow me to have a personal cloud storage for any of my devices. "
-                        "I also have some jails on that one but they're responsible for more lightweight tasks. "
-                        "There is a lot more nuance and responsible that I give to these servers. I just wanted to show their existence :P "
+                        "I currently have 2 FreeBSD servers I'm activily utilizing. "
+                        "One of them is being used as a custom router and endpoint. It helps filter and drop unneeded packets (mostly telemetry). "
+                        "The other is more powerful and runs all my virtual machines, jails, and even my nfs server. "
+                        "The nfs server is paired with wireguard tunnels allowing me to have a cloud storage for my devices. "
                     }
                 }
             ))
@@ -90,8 +90,14 @@ pub fn projects() -> Markup {
 }
 
 fn project(image: &str, name: &str, brief: &str, details: Markup) -> Markup {
-    let toggle_id = format!("proj-{name}");
-    let proj_img = format!("public/images/projects/{image}");
+    let dirty = format!("proj-{name}");
+    let toggle_id = dirty
+        .chars()
+        .filter(|c| c.is_alphanumeric())
+        .collect::<String>()
+        .to_lowercase();
+
+    let proj_img = format!("/public/images/projects/{image}");
 
     html! {
         input type="checkbox" id=(toggle_id) class="modal-state";

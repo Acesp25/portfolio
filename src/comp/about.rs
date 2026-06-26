@@ -10,11 +10,11 @@ pub fn about() -> Markup {
            (stuff_photo(
                 AURA_IMG,
                 html! {
-                    h3 { "About Me"}
+                    h3 { "About Me" }
                     p {
                         "I am a student at Texas State University pursuing Computer Science, "
                         "Applied Math, and Chinese. I currently am a deep learning researcher for my university "
-                        "while persuing FreeBSD projects on the side. "
+                        "while making FreeBSD-based projects on the side. "
                     }
                 }
            ))
@@ -23,7 +23,7 @@ pub fn about() -> Markup {
                 html! {
                     h3 { "Away from the computer" }
                     p {
-                        "When im not looking a computer screen, I enjoy competing in a vast majority of sports. "
+                        "When I'm not looking a computer screen, I enjoy competing in a vast majority of sports. "
                         "My current fixations are fencing foil, soccer, tennis, and swimming. "
                         "I also enjoy reading books about my favorite computer topics, and playing "
                         "competitive video games. "
@@ -36,7 +36,7 @@ pub fn about() -> Markup {
                    h3 { "More fun things" }
                    p {
                        "Having a creative outlet is very important to me. Whenever it's not programming, "
-                       " I love expressing my creativity through editing videos in After Effects. "
+                       "I love expressing my creativity through editing videos in After Effects. "
                        "Although, most of the projects I work on end up being scrapped. "
                    }
                }
@@ -83,7 +83,7 @@ fn stuff(stuff: Markup) -> Markup {
 }
 
 fn stuff_photo(photo: &str, stuff: Markup) -> Markup {
-    let pic = format!("public/images/about/{photo}");
+    let pic = format!("/public/images/about/{photo}");
 
     html! {
         .stuff-photo {
@@ -98,7 +98,7 @@ fn stuff_photo(photo: &str, stuff: Markup) -> Markup {
 }
 
 fn photo_stuff(photo: &str, stuff: Markup) -> Markup {
-    let pic = format!("public/images/about/{photo}");
+    let pic = format!("/public/images/about/{photo}");
 
     html! {
         .photo-stuff {
