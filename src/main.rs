@@ -1,13 +1,19 @@
+extern crate css_minify;
+extern crate maud;
 extern crate rocket;
 
-use rocket::{get, build, launch, routes};
+use rocket::{fs::FileServer, launch, routes};
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
+#[macro_use]
+mod macros;
+
+mod comp;
+mod index;
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::build()
+        .mount("/", routes![index::index])
+        .mount("/public", FileServer::from(relative!("/public")))
 }
+
