@@ -1,3 +1,7 @@
+/* ============================================================
+   main.css -- fonts, design tokens, base typography, resets
+   ============================================================ */
+
 @font-face {
 	font-family: "JetBrains Mono";
 	font-style: normal;
@@ -8,61 +12,114 @@
 		url(/public/fonts/JetBrainsMono-Regular.ttf) format("truetype");
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@font-face {
+	font-family: "JetBrains Mono";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src:
+		url(/public/fonts/JetBrainsMono-Bold.woff2) format("woff2"),
+		url(/public/fonts/JetBrainsMono-Bold.ttf) format("truetype");
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ---------- Design tokens ----------
+   Sizing tokens are px/rem, never em. A custom property resolves against
+   the font-size of the element that *uses* it, so 0.35em produced three
+   different border widths depending on where it landed. */
 :root {
     --background-color: #ccbfae;
     --font-color: #302c2a;
-    --accent-color: #5f5f5f;
+    --accent-color: #4a4a4a;      /* was #5f5f5f -- 3.5:1, failed WCAG AA */
     --highlight-color: #ab9696;
-
     --border-color: #3d302a;
-    --border-width: 0.35em;
-    --border-radius: 3.75em;
 
-    --section-max-width: 66em;
-	--section-x-padding: 1.25em;
-    --about-padding: 1.875em;
-	--section-y-padding: 1.5em;
-    
-    --experience-logo-size: 6.25em;
+    --border-width: 5px;
+
+    /* One radius scale instead of a mix of 40px / 3.75em / 20% / 25% */
+    --radius-card: 40px;
+    --radius-modal: 60px;
+    --radius-img: 20px;
+    --radius-photo: 20%;
+
+    --section-max-width: 66rem;
+    --section-x-padding: 1.25rem;
+    --about-padding: 1.875rem;
+
+    /* ---------- Image sizing ----------
+       One token per role, not one token for every image. These serve
+       different jobs and have different natural shapes; a single shared
+       size would either crop the logos or letterbox the screenshots.
+
+       Pair each with aspect-ratio + object-fit in body.css so that
+       variation between source files stops driving the layout. */
+    --img-logo: 6.25rem;        /* experience logos    -- 1:1,   contain */
+    --img-avatar: 25rem;        /* intro portrait      -- 1:1,   cover   */
+    --img-about: 20rem;         /* about photos        -- free,  contain */
+    --img-project: 20rem;       /* project screenshots -- 16:10, cover   */
+    --img-book: 10rem;          /* book covers         -- 2:3,   cover   */
 
     --transition-time: 0.2s;
+
+    /* Reusable effects -- these were hardcoded in ~8 places.
+       NOTE: css-minify 0.5.2 cannot parse nested parentheses in a value
+       (its paren parser stops at the first ")"), so these deliberately
+       inline the literal colors instead of nesting var() inside a
+       function. Keep them in sync with --border-color / --font-color. */
+    --glow: drop-shadow(0 0 5px #3d302a);         /* = --border-color */
+    --card-shadow: 0 0 15px var(--highlight-color);
+    --scrim: rgba(48, 44, 42, 0.8);               /* = --font-color @ 80% */
+}
+
+/* ---------- Resets ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Stops any oversized asset from forcing a horizontal scrollbar */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 body {
-    font-family: "JetBrains Mono", monospace;
+    margin: 0;
+    font-family: "JetBrains Mono", "Noto Sans CJK SC", "PingFang SC",
+                 "Microsoft YaHei", monospace;
     color: var(--font-color);
     background-color: var(--background-color);
     animation: fadeIn 0.3s ease-in forwards;
 }
 
-h1 {
-    font-size: 2.5em;
-}
+/* ---------- Typography ----------
+   rem, not em, so nesting can't compound these. */
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.5rem; }
+p  { font-size: 1.3rem; }
 
-h2 {
-    font-size: 1.9em;
-}
-
-h3 {
-    font-size: 1.5em;
-}
-
-p {
-    font-size: 1.3em;
-}
-
-strong {
+/* Decorative underline is scoped, not global. <strong> is now used for
+   inline labels ("Author:", "Languages:") where an underline reads as noise.
+   Widen this selector if you want the treatment somewhere else. */
+.intro strong, 
+.footer strong {
     border-bottom: var(--border-width) solid var(--highlight-color);
 }
 
-@media screen and (max-width: 768px) {
-    .split-layout {
-        flex-direction: column;
-        text-align: center;
+/* ---------- Motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

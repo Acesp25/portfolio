@@ -1,20 +1,21 @@
+/* ============================================================
+   base.css -- page shell and intro layout
+   ============================================================ */
 
 .date {
     margin: 0;
     font-style: italic;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     color: var(--accent-color);
 }
 
 .section-container {
-    margin: auto auto;
-    justify-content: center;
+    margin-inline: auto;
     max-width: var(--section-max-width);
 }
 
 .header {
     text-align: center;
-    gap: 20px;
     margin-block: 20px;
 }
 
@@ -22,24 +23,26 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 16px;
 }
 
 .split-layout {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 2rem;
     margin-block: 40px;
 }
 
 .left-column {
-    flex: 1;
-    margin-right: -10em;
-    padding-left: 1em;
+    flex: 1.3;
+    min-width: 0;
+    padding-left: 1rem;
 }
 
 .right-column {
     flex: 1;
+    min-width: 0;
 }
 
 /* This is just for the Hello being centered */
@@ -54,28 +57,34 @@
 }
 
 .aura-container img {
-    width: 75%;
-    height: auto;
+    /* NOTE: deliberately two declarations rather than
+       `width: min(var(--img-avatar), 100%)` -- css-minify 0.5.2 chokes on
+       a var() nested inside another function. Same reason --glow is flat.
+
+       The token drives the size and the percentage is the ceiling. The
+       reverse (width: 75%; max-width: var(--img-avatar)) meant the token
+       was an upper bound that almost never bound, so editing it did nothing. */
+    width: var(--img-avatar);
+    max-width: 100%;
+    min-width: 0;      /* allow shrink below the token on narrow columns */
+    aspect-ratio: 1;
+    object-fit: cover;
     display: block;
-    border-style: solid;
+    border: var(--border-width) solid var(--border-color);
     border-radius: 25%;
-    border-color: var(--border-color);
-    border-width: 7px;
 }
 
 .body-container {
     display: flex;
     flex-direction: column;
-    padding-left: var(--section-x-padding);
-    padding-right: var(--section-x-padding);
+    padding-inline: var(--section-x-padding);
     gap: 24px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-block: 20px;
 }
 
 .footer {
     text-align: center;
     padding: 20px;
-    font-size: 0.9em;
-    color: var(--text-color);
+    font-size: 0.9rem;
+    color: var(--font-color);
 }

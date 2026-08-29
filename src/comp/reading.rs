@@ -1,160 +1,155 @@
 use maud::{Markup, html};
 use std::sync::LazyLock;
 
-const BLINK_COVER:      &str = "blink.jpg";
-const NOTESFROM_COVER:  &str = "notesfromunder.jpg";
-const HOUSE_COVER:      &str = "house.jpg";
-const TOSELL_COVER:     &str = "tosell.jpg";
-const UNDERSTAND_COVER: &str = "understandingprogrammer.jpg";
-const NINETEEN84_COVER: &str = "1984.jpg";
-const THETRIPLE_COVER:  &str = "thetriple.jpg";
-const EMBRSUCK_COVER:   &str = "embracesuck.jpg";
-const ALCHEMIST_COVER:  &str = "alchemist.jpg";
-const REVINSAN_COVER:   &str = "reverendinsanity.jpeg";
+use super::images::{Loading, Photo};
 
 pub fn reading() -> Markup {
     html! {
         .body-container {
             .reading-list {
                 h2 { "Currently Reading" }
-                ((*REVINSAN_BOOK).showcase())
-                ((*ALCHEMIST_BOOK).showcase())
-                ((*NOTESFROM_BOOK).showcase())
-                ((*HOUSE_BOOK).showcase())
+                (REVEREND_INSANITY.showcase())
+                (ALCHEMIST.showcase())
+                (NOTES_UNDERGROUND.showcase())
+                (HOUSE_OF_LEAVES.showcase())
             }
             .reading-list {
                 h2 { "Favorites" }
-                ((*UNDERSTAND_BOOK).showcase())
-                ((*NINETEEN84_BOOK).showcase())
+                (UNDERSTANDING_PROGRAMMER.showcase())
+                (NINETEEN_EIGHTY_FOUR.showcase())
             }
             .reading-list {
                 h2 { "Planning to Read" }
-                ((*TOSELL_BOOK).showcase())
-                ((*THETRIPLE_BOOK).showcase())
+                (TO_SELL_IS_HUMAN.showcase())
+                (TRIPLE_PACKAGE.showcase())
             }
             .reading-list {
                 h2 { "Previously Read" }
-                ((*BLINK_BOOK).showcase())
-                ((*EMBRACESUCK_BOOK).showcase())
+                (BLINK.showcase())
+                (EMBRACE_THE_SUCK.showcase())
             }
         }
     }
 }
 
-static REVINSAN_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "Reverend Insanity",
+static REVEREND_INSANITY: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "Reverend Insanity",
     author: "蛊真人",
-    cover:  REVINSAN_COVER,
-    thoughts: html! {},
+    cover: Photo::book("reverendinsanity", "Cover of Reverend Insanity"),
+    thoughts: None,
 });
 
-static EMBRACESUCK_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "Embrace the Suck",
-    author: "Brent Gleeson",
-    cover:  EMBRSUCK_COVER,
-    thoughts: html! {
-        p {
-            "A great guide to living a fulfilling life. I thought it would be a cringy read,
-            but I found it quickly eases readers through its engaging anecdotes and relatability."
-        }
-    },
-});
-
-static ALCHEMIST_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "The Alchemist",
+static ALCHEMIST: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "The Alchemist",
     author: "Paulo Coelho",
-    cover:  ALCHEMIST_COVER,
-    thoughts: html! {},
+    cover: Photo::book("alchemist", "Cover of The Alchemist"),
+    thoughts: None,
 });
 
-static NOTESFROM_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "Notes From the Underground",
+static NOTES_UNDERGROUND: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "Notes From the Underground",
     author: "Fyodor Dostoevsky",
-    cover:  NOTESFROM_COVER,
-    thoughts: html! {},
+    cover: Photo::book("notesfromunder", "Cover of Notes From the Underground"),
+    thoughts: None,
 });
 
-static BLINK_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "Blink",
-    author: "Malcolm Gladwell",
-    cover:  BLINK_COVER,
-    thoughts: html! {
-        p {
-            "A great read! I honestly learned so much about our instincts and our brain's rapid initial processing."
-        }
-    },
-});
-
-static HOUSE_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "House of Leaves",
+static HOUSE_OF_LEAVES: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "House of Leaves",
     author: "Mark Z. Danielewski",
-    cover:  HOUSE_COVER,
-    thoughts: html! {},
+    cover: Photo::book("house", "Cover of House of Leaves"),
+    thoughts: None,
 });
 
-static TOSELL_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "To Sell is Human",
-    author: "Daniel H. Pink",
-    cover:  TOSELL_COVER,
-    thoughts: html! {},
-});
-
-static THETRIPLE_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "The Triple Package",
-    author: "Amy Chua, Jeb Rubenfeld",
-    cover:  THETRIPLE_COVER,
-    thoughts: html! {},
-});
-
-static UNDERSTAND_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "Understanding the Professional Programmer",
+static UNDERSTANDING_PROGRAMMER: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "Understanding the Professional Programmer",
     author: "Gerald M. Weinberg",
-    cover:  UNDERSTAND_COVER,
-    thoughts: {
-        html! {
-            p {
-                "Although this book was written almost 40 years ago,
-                it was oddly comforting to see that the same struggles 
-                for programmers back then are still relevant today. 
-                Thinking about it again, maybe it's more disappointing than comforting. 
-                Nonetheless, I recommend it for programmers and managers of them." 
-            }
+    cover: Photo::book(
+        "understandingprogrammer",
+        "Cover of Understanding the Professional Programmer",
+    ),
+    thoughts: Some(html! {
+        p {
+            "Although this book was written almost 40 years ago, it was oddly comforting "
+            "to see that the same struggles for programmers back then are still relevant "
+            "today. Thinking about it again, maybe that's more disappointing than "
+            "comforting. Either way, I recommend it to programmers and to the people "
+            "managing them."
         }
-    },
+    }),
 });
 
-static NINETEEN84_BOOK: LazyLock<Book<'static>> = LazyLock::new(|| Book {
-    title:  "1984",
+static NINETEEN_EIGHTY_FOUR: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "1984",
     author: "George Orwell",
-    cover:  NINETEEN84_COVER,
-    thoughts: {
-        html! {
-            p {
-                "Does this one need an explanation?"
-            }
-        }
-    },
+    cover: Photo::book("1984", "Cover of 1984"),
+    thoughts: Some(html! {
+        p { "Does this one need an explanation?" }
+    }),
 });
 
-struct Book<'a> {
-    title:  &'a str,
-    author: &'a str,
-    cover:  &'a str,
-    thoughts: Markup,
-}
-impl<'a> Book<'a> {
-    fn showcase(&self) -> Markup {
-        let book_cover = format!("/public/images/reading/{}", self.cover);
+static TO_SELL_IS_HUMAN: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "To Sell is Human",
+    author: "Daniel H. Pink",
+    cover: Photo::book("tosell", "Cover of To Sell is Human"),
+    thoughts: None,
+});
 
+static TRIPLE_PACKAGE: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "The Triple Package",
+    author: "Amy Chua, Jed Rubenfeld",
+    cover: Photo::book("thetriple", "Cover of The Triple Package"),
+    thoughts: None,
+});
+
+static BLINK: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "Blink",
+    author: "Malcolm Gladwell",
+    cover: Photo::book("blink", "Cover of Blink"),
+    thoughts: Some(html! {
+        p {
+            "A great read! I learned a lot about our instincts and our brain's rapid "
+            "initial processing."
+        }
+    }),
+});
+
+static EMBRACE_THE_SUCK: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "Embrace the Suck",
+    author: "Brent Gleeson",
+    cover: Photo::book("embracesuck", "Cover of Embrace the Suck"),
+    thoughts: Some(html! {
+        p {
+            "A guide to living a fulfilling life. I thought it would be a cringy read, "
+            "but it eases you through with engaging anecdotes and a lot of relatability."
+        }
+    }),
+});
+
+struct Book {
+    title:  &'static str,
+    author: &'static str,
+    cover:  Photo,
+    thoughts: Option<Markup>,
+}
+
+impl Book {
+    fn showcase(&self) -> Markup {
         html! {
             .book {
                 .book-cover {
-                    img src=(book_cover) alt=(self.title);
+                    (self.cover.img(Loading::Lazy))
                 }
                 .book-info {
                     h3 { (self.title) }
-                    p { b { "Author: " } (self.author) }
-                    (self.thoughts)
+                    p { strong { "Author: " } (self.author) }
+                    /*
+                     * Deref matters: `&self.thoughts` binds `thoughts` as
+                     * `&Markup`, and Maud has no Render impl for a reference
+                     * to Markup -- it takes the reference itself.
+                     */   
+                    @if let Some(thoughts) = &self.thoughts {
+                        (*thoughts)
+                    }
                 }
             }
         }
