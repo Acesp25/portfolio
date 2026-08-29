@@ -1,21 +1,32 @@
+/* ============================================================
+   mobile.css -- responsive overrides
+
+   All the `:hover { transform: none }` blocks that used to live here
+   are gone. Hover is now gated on `(hover: hover) and (pointer: fine)`
+   in body.css, which is the actual condition those rules were proxying for.
+   ============================================================ */
+
 @media screen and (max-width: 768px) {
 
     /* Scale the design tokens down. Everything keyed off these follows. */
     :root {
-        --border-radius: 1.75em;
-        --border-width: 0.25em;
-        --about-padding: 1em;
-        --section-x-padding: 1em;
-        --experience-logo-size: 3.5em;
+        --border-width: 4px;
+        --radius-card: 28px;
+        --radius-modal: 24px;
+        --radius-img: 16px;
+        --about-padding: 1rem;
+        --section-x-padding: 1rem;
+        --img-logo: 3.5rem;
+        --img-project: 100%;
+        --img-book: 6rem;
     }
 
-    h1 { font-size: 1.9em; }
-    h2 { font-size: 1.4em; }
-    h3 { font-size: 1.15em; }
-    p  { font-size: 1em; }
+    h1 { font-size: 1.9rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.15rem; }
+    p  { font-size: 1rem; }
 
     /* ---------- Intro ---------- */
-    /* The -10em margin-right on .left-column is the sideways-scroll culprit. */
     .split-layout {
         flex-direction: column;
         text-align: center;
@@ -23,7 +34,6 @@
         margin-block: 20px;
     }
     .left-column {
-        margin-right: 0;
         padding-left: 0;
         width: 100%;
     }
@@ -33,7 +43,6 @@
     .aura-container img {
         width: 60%;
         max-width: 220px;
-        border: 7px solid var(--border-color);
     }
 
     /* ---------- Tabs ---------- */
@@ -45,44 +54,30 @@
         margin-bottom: 12px;
     }
     #exp-label, #proj-label, #about-label, #read-label {
-        font-size: 1em;
+        font-size: 1rem;
         padding: 4px 2px;
     }
     /* Scale transforms shove labels past the viewport edge at this width. */
-    #exp-label:hover, #proj-label:hover,
-    #about-label:hover, #read-label:hover { transform: none; }
-
     #exp-input:checked   ~ .tabs #exp-label,
     #proj-input:checked  ~ .tabs #proj-label,
     #about-input:checked ~ .tabs #about-label,
     #read-input:checked  ~ .tabs #read-label { transform: none; }
 
-    /* ---------- Experience cards ---------- */
+    /* ---------- Cards ---------- */
     .experience {
         gap: 14px;
         padding: 18px;
     }
-    /* :hover sticks after tap on touch devices -- disable it. */
-    .experience:hover {
-        transform: none;
-        box-shadow: none;
-    }
 
-    /* ---------- Project cards ---------- */
     .project {
         flex-direction: column;
         gap: 14px;
         padding: 18px;
     }
-    .project:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    /* Was a hard 400px -- wider than the phone itself. */
-    .project img {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 1.25em;
+    .project .photo-container { width: 100%; }
+    .project .photo-container img {
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-img);
     }
 
     /* ---------- About ---------- */
@@ -93,10 +88,9 @@
     .stuff-photo .info-container,
     .photo-stuff .info-container { padding: 8px 0; }
 
-    .stuff-photo img, .photo-stuff img {
+    .stuff-photo .photo-container, .photo-stuff .photo-container {
         width: 70%;
         max-width: 240px;
-        padding: 0;
         align-self: center;
     }
     .stuff { padding: 16px; }
@@ -106,36 +100,32 @@
         padding: 16px;
         gap: 20px;
     }
-    .book { align-items: flex-start; }
-    .book-cover img { width: 6em; }
-    .book-info { padding-left: 1em; }
+    .book {
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
 
     /* ---------- Modals ---------- */
-    /* No max-height meant tall entries ran off-screen with no way to scroll. */
     .exp-modal-content, .proj-modal-content {
         width: 92%;
         padding: 26px 18px;
         max-height: 85vh;
-        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        border-radius: 1.5em;
     }
     .exp-modal-header { gap: 12px; }
     .exp-modal-header img { width: 44px; }
 
     .exp-modal-details, .proj-modal-details {
-        padding-left: 0;
-        padding-right: 0;
+        padding-inline: 0;
     }
     .close-btn {
         top: 6px;
         right: 8px;
         padding: 8px 12px;   /* keeps the tap target near 44px */
     }
-    .close-btn:hover { transform: none; }
 }
 
-/* Very narrow phones (iPhone SE and similar) */
 @media screen and (max-width: 400px) {
     .experience {
         flex-direction: column;
@@ -146,5 +136,5 @@
         align-items: center;
         gap: 2px;
     }
-    .book-cover img { width: 5em; }
+    :root { --img-book: 5rem; }
 }

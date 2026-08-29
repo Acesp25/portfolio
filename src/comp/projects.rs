@@ -1,185 +1,167 @@
 use maud::{Markup, html};
 use std::sync::LazyLock;
 
-const RUSTKLD_IMG:  &str = "rustkld.png";
-const VEB_IMG:      &str = "veb.png";
-const VTGPIO_IMG:   &str = "vtgpio.png";
-const TASTE_IMG:    &str = "tastebase.png";
-const SETUP_IMG:    &str = "setup.jpg";
-const PINGPONG_IMG: &str = "pingpong.jpg";
-const WEBSITE_IMG:  &str = "website.png";
+use super::images::{Loading, Photo};
+use super::ui::{Link, Modal, link_list, slug};
 
 pub fn projects() -> Markup {
     html! {
         .body-container {
-            ((*RUSTKLD_PROJ).showcase())
-            ((*VEB_PROJ).showcase())
-            ((*VTGPIO_PROJ).showcase())
-            ((*TASTEBASE_PROJ).showcase())
-            ((*PINGPONG_PROJ).showcase())
-            ((*SETUP_PROJ).showcase())
-            ((*WEBSITE_PROJ).showcase())
+            (RUSTKLD.showcase())
+            (VEB.showcase())
+            (VTGPIO.showcase())
+            (TASTEBASE.showcase())
+            (PINGPONG.showcase())
+            (SETUP.showcase())
+            (WEBSITE.showcase())
         }
     }
 }
 
-static RUSTKLD_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "RustKLD",
-    brief:  "FreeBSD Framework for making Rust Kernel Device Drivers",
-    img:    RUSTKLD_IMG,
-    desc: {
-        html! {
-            p {
-                "This framework was a result from my GSoC project with FreeBSD. "
-                "It allows developers to easily create their own Rust device drivers for FreeBSD. "
-                "Includes a modular, expandable structure with CI integration and "
-                "documentation to further assist developers wanting to learn and work with it. "
-            }
-            p { b { "Code Link: "} a href=("https://github.com/Acesp25/rustkld") { "Acesp/rustkld" } }
+static RUSTKLD: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "RustKLD",
+    brief: "FreeBSD framework for writing Rust kernel device drivers",
+    img: Photo::project("rustkld", "RustKLD project banner"),
+    desc: html! {
+        p {
+            "This framework came out of my GSoC project with FreeBSD. It lets developers "
+            "create their own Rust device drivers for FreeBSD, with a modular, expandable "
+            "structure, CI integration, and documentation for people learning the codebase."
         }
     },
+    links: vec![Link {
+        label: "Code: Acesp25/rustkld",
+        href: "https://github.com/Acesp25/rustkld",
+    }],
 });
 
-static VEB_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "Veb Network Driver (WIP)",
-    brief:  "Virtual Ethernet Bridge network pseudo-device for FreeBSD",
-    img:    VEB_IMG,
-    desc: {
-        html! {
-            p {
-                "This FreeBSD network driver was inspired by OpenBSD's veb(4). "
-                "It's structurally similar to bridge(4) but is a stripped-down variant for Jails and Bhyve VMs. "
-                "This driver also hides itself from the host-network stack. These features allow for "
-                "faster network connections, perfect for latency-dependent use-cases."
-            }
+static VEB: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "veb(4) Network Driver (WIP)",
+    brief: "Virtual Ethernet Bridge pseudo-device for FreeBSD",
+    img: Photo::project("veb", "veb(4) project banner"),
+    desc: html! {
+        p {
+            "A FreeBSD network driver modelled on OpenBSD's veb(4). It is structurally "
+            "similar to if_bridge(4) but stripped down for jails and bhyve VMs, and it "
+            "hides itself from the host network stack. The result is a shorter L2 path, "
+            "which matters for latency-sensitive workloads."
         }
     },
+    links: vec![],
 });
 
-static VTGPIO_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "VirtIO GPIO Driver (WIP)",
-    brief:  "VirtIO General Input/Output Driver for FreeBSD",
-    img:    VTGPIO_IMG,
-    desc: {
-        html! {
-            p {
-                "This project was to familiarize myself with more technical device drivers for FreeBSD. "
-                "It was designed using the Version 1.3 documentation provided by Oasis-Open. "
-                "I originally wrote it in C, however I plan to make a Rust version for fun. "
-                "Currently does not support the IRQ feature."
-            }
+static VTGPIO: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "VirtIO GPIO Driver (WIP)",
+    brief: "VirtIO general-purpose I/O driver for FreeBSD",
+    img: Photo::project("vtgpio", "VirtIO GPIO project banner"),
+    desc: html! {
+        p {
+            "Written to get familiar with more involved FreeBSD device drivers, against "
+            "the OASIS VirtIO 1.3 specification. Originally in C; a Rust version is "
+            "planned. Does not yet support the IRQ feature."
         }
     },
+    links: vec![],
 });
 
-
-static TASTEBASE_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "TasteBase",
-    brief:  "A webapp that simplifies the research to make cooking more easy",
-    img:    TASTE_IMG,
-    desc: {
-        html! {
-            p {
-                "A group project for my software engineering course. I was one of two people in charge with writing and maintaing "
-                "the backend. We used MariaDB with custom SpringBoot API for our frontend team to interact with. "
-                "Users could log in using a google account, add their ingredints, and get hundreads of recipes to choose from."
-                "One fun quirk with this class was that we were tasked with using Jira to follow and develop our projects."
-            }
-            p { b { "Code Link: "} a href=("https://github.com/TastebaseApp/Tastebase") { "TasteBase" } }
-        }
-    }
-});
-
-static PINGPONG_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "TCP PingPong",
-    brief:  "Simple socket programming with both Rust and C",
-    img:    PINGPONG_IMG,
-    desc: {
-        html! {
-            p {
-                "This project was to get myself introduced to socket programming with both C POSIX and Rust std::net. "
-                "It has a Rust server/client and a C server/client communicating back and forth to each other. "
-            }
+static TASTEBASE: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "TasteBase",
+    brief: "A web app that cuts the research out of cooking",
+    img: Photo::project("tastebase", "TasteBase project banner"),
+    desc: html! {
+        p {
+            "A group project for my software engineering course. I was one of two people "
+            "writing and maintaining the backend: MariaDB behind a custom Spring Boot API "
+            "for the frontend team to consume. Users signed in with a Google account, "
+            "entered their ingredients, and got matching recipes. The course also had us "
+            "running the whole project through Jira."
         }
     },
+    links: vec![Link {
+        label: "Code: TastebaseApp/Tastebase",
+        href: "https://github.com/TastebaseApp/Tastebase",
+    }],
 });
 
-static SETUP_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "FreeBSD Setup",
-    brief:  "How I use FreeBSD in my day-to-day life",
-    img:    SETUP_IMG,
-    desc: {
-        html! {
-            p {
-                "I currently have 2 FreeBSD servers I'm actively utilizing. "
-                "One of them is being used as a custom router and endpoint. It helps filter and drop unneeded packets (mostly telemetry). "
-                "The other is more powerful and runs all my virtual machines, jails, and even my nfs server. "
-                "The nfs server is paired with wireguard tunnels allowing me to have a cloud storage for my portable devices. "
-            }
+static PINGPONG: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "TCP PingPong",
+    brief: "Socket programming in both Rust and C",
+    img: Photo::project("pingpong", "TCP PingPong project banner"),
+    desc: html! {
+        p {
+            "An introduction to socket programming with C POSIX sockets and Rust's "
+            "std::net. A Rust server/client and a C server/client talk to each other in "
+            "both directions."
         }
     },
+    links: vec![],
 });
 
-static WEBSITE_PROJ: LazyLock<Project<'static>> = LazyLock::new(|| Project {
-    name:   "Portfolio Website",
-    brief:  "This very website you're looking at :)",
-    img:    WEBSITE_IMG,
-    desc: {
-        html! {
-            p {
-                "This website was built in " b { "pure Rust" } " meaning no HTML, or Javascript used whatsoever! "
-                "It was a lot of fun to make, you should check it out :)"
-            }
-            p { b { "Code Link: "} a href=("https://github.com/Acesp25/portfolio") { "Portfolio" } }
+static SETUP: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "FreeBSD Setup",
+    brief: "How I run FreeBSD day to day",
+    img: Photo::project("setup", "Photo of my FreeBSD home servers"),
+    desc: html! {
+        p {
+            "Two FreeBSD servers in active use. One is a custom router and endpoint that "
+            "filters and drops unwanted traffic, mostly telemetry. The other is heavier "
+            "and runs my virtual machines, jails, and an NFS server. The NFS server is "
+            "paired with WireGuard tunnels, which gives me cloud storage for my portable "
+            "devices."
         }
     },
+    links: vec![],
 });
 
-struct Project<'a> {
-    name: &'a str,
-    brief: &'a str,
-    img: &'a str,
-    desc: Markup,
+static WEBSITE: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "Portfolio Website",
+    brief: "This very website you're looking at :)",
+    img: Photo::project("website", "Screenshot of this website"),
+    desc: html! {
+        p {
+            "Built in Rust with no hand-written HTML and no JavaScript, the templates "
+            "are Rust macros (Maud) served by Rocket. It was a lot of fun to make, you "
+            "should check it out :)"
+        }
+    },
+    links: vec![Link {
+        label: "Code: Acesp25/portfolio",
+        href: "https://github.com/Acesp25/portfolio",
+    }],
+});
+
+struct Project {
+    name:   &'static str,
+    brief:  &'static str,
+    img:    Photo,
+    desc:   Markup,
+    links:  Vec<Link>,
 }
-impl<'a> Project<'a> {
+
+impl Project {
     fn showcase(&self) -> Markup {
-        let dirty = format!("proj-{}", self.name);
-        let toggle_id = dirty
-            .chars()
-            .filter(|c| c.is_alphanumeric())
-            .collect::<String>()
-            .to_lowercase();
-
-        let proj_img = format!("/public/images/projects/{}", self.img);
-
-        html! {
-            input type="checkbox" id=(toggle_id) class="modal-state";
-
-            label for=(toggle_id) class="project" {
+        Modal {
+            id: slug(&["proj", self.name]),
+            card_class: "project",
+            card: html! {
                 .info-container {
-                    h2 { (self.name)}
+                    h2 { (self.name) }
                     p { (self.brief) }
                 }
-                .logo-container {
-                    img alt=(self.name) src=(proj_img);
+                (self.img.framed(Loading::Lazy))
+            },
+            panel_class: "proj-modal-content",
+            panel: html! {
+                .proj-modal-header {
+                    h2 { (self.name) }
                 }
-            }
-
-            .modal-overlay {
-                label for=(toggle_id) class="modal-backdrop" {};
-
-                .proj-modal-content {
-                    label for=(toggle_id) class="close-btn" { "x" }
-
-                    .proj-modal-header {
-                        h2 { (self.name) }
-                    }
-                    .proj-modal-details {
-                        p { (self.brief) }
-                        (self.desc)
-                    }
+                .proj-modal-details {
+                    p { (self.brief) }
+                    (self.desc)
+                    (link_list(&self.links))
                 }
-            }
+            },
         }
+        .render()
     }
 }

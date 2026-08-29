@@ -1,37 +1,65 @@
+/* ============================================================
+   body.css -- tabs, cards, modals, about, reading list
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Hidden form controls
+
+   These were `display: none`, which removed the tabs and every modal
+   from the keyboard entirely. Visually hidden instead: still focusable,
+   still announced, takes no space.
+   ------------------------------------------------------------ */
+input[type="radio"],
+.modal-state {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- Tabs ---------- */
 .tabs {
-	margin-top: 32px;
-	margin-bottom: 16px;
 	display: flex;
 	justify-content: center;
 	gap: 32px;
+	margin-top: 32px;
+	margin-bottom: 16px;
 }
 
-#exp-label, 
+#exp-label,
 #proj-label,
-#about-label, 
+#about-label,
 #read-label {
-	font-weight: bold;
-    font-size: 1.2em;
+	font-weight: 700;
+    font-size: 1.2rem;
     padding: 5px;
 	cursor: pointer;
     display: inline-block;
     border-bottom: var(--border-width) solid transparent;
 	transform: scale(1);
-	transition: transform 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+	transition: transform var(--transition-time) ease-in-out,
+	            border-bottom var(--transition-time) ease-in-out;
 }
 
-#exp-label:hover,
-#proj-label:hover,
-#about-label:hover,
-#read-label:hover {
-    border-bottom: var(--border-width) solid var(--border-color);
-    transform: scale(1.1);
+/* Keyboard focus ring -- the visible counterpart to the hidden radio */
+#exp-input:focus-visible   ~ .tabs #exp-label,
+#proj-input:focus-visible  ~ .tabs #proj-label,
+#about-input:focus-visible ~ .tabs #about-label,
+#read-input:focus-visible  ~ .tabs #read-label {
+    outline: 3px solid var(--border-color);
+    outline-offset: 4px;
 }
 
-#exp-input:checked ~ .tabs #exp-label,
-#proj-input:checked ~ .tabs #proj-label,
+#exp-input:checked   ~ .tabs #exp-label,
+#proj-input:checked  ~ .tabs #proj-label,
 #about-input:checked ~ .tabs #about-label,
-#read-input:checked ~ .tabs #read-label {
+#read-input:checked  ~ .tabs #read-label {
     border-bottom: var(--border-width) solid var(--highlight-color);
 	transform: scale(1.2);
 }
@@ -46,142 +74,137 @@
 	padding-inline: var(--section-x-padding);
 	position: absolute;
 	top: 0;
-	overflow-y: hidden;
 	height: 100%;
+	overflow-y: hidden;
 	transition: transform 0.5s, opacity 0.5s;
-	opacity: 0%;
+	opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
-#exp-content, 
-#proj-content, 
-#about-content, 
+#exp-content,
+#proj-content,
+#about-content,
 #read-content {
     transition: opacity 0.5s;
 }
 
-
-#exp-input:checked ~ .tab-content #exp-content,
-#proj-input:checked ~ .tab-content #proj-content,
+#exp-input:checked   ~ .tab-content #exp-content,
+#proj-input:checked  ~ .tab-content #proj-content,
 #about-input:checked ~ .tab-content #about-content,
-#read-input:checked ~ .tab-content #read-content {
+#read-input:checked  ~ .tab-content #read-content {
     position: relative;
-    opacity: 100%;
+    opacity: 1;
     display: block;
     visibility: visible;
+    pointer-events: auto;
 }
 
-.experience {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 30px;
-    border-color: var(--border-color);
-    border-width: var(--border-width);
-    border-radius: 40px;
-    border-style: solid;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
-    transform: translateZ(0);
-}
+/* ------------------------------------------------------------
+   Cards
 
-.experience:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 0px 15px var(--highlight-color);
-}
-
-.experience .logo-container img {
-    width: var(--experience-logo-size);
-    height: var(--experience-logo-size);
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 5px #3d302a);
-}
-
-.experience .info-container {
-    flex: 1;
-    gap: 4px;
-}
-
-.experience .info-container h3, 
-.experience .info-container p {
-    margin: 0;
-}
-
-.project h2 {
-    display: flex;
-    justify-content: center;
-}
-
+   .experience and .project were two byte-identical rule blocks.
+   Merged. If you add a shared `.card` class in the Maud templates
+   later, these selector lists collapse to one.
+   ------------------------------------------------------------ */
+.experience,
 .project {
     display: flex;
     align-items: center;
     gap: 30px;
     padding: 30px;
-    border-color: var(--border-color);
-    border-width: var(--border-width);
-    border-radius: 40px;
-    border-style: solid;
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-card);
     cursor: pointer;
+    transition: transform var(--transition-time), box-shadow var(--transition-time);
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
     transform: translateZ(0);
 }
 
-.project:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 0px 15px var(--highlight-color);
+/* Focus ring for the card's hidden checkbox */
+.modal-state:focus-visible + .experience,
+.modal-state:focus-visible + .project {
+    outline: 3px solid var(--border-color);
+    outline-offset: 4px;
 }
 
-.proj-modal-header h2 {
-    display: flex;
-    justify-content: center;
+/* ------------------------------------------------------------
+   Image wrappers
+
+   Every image inside a flex row is wrapped in a container, and THAT
+   container is the flex item -- not the <img>. Flex properties only apply
+   to direct children of a flex container, so `flex-shrink: 0` on an <img>
+   one level down is silently ignored and the wrapper gets squashed by the
+   text column beside it.
+
+   Rule: size and flex live on the wrapper; the <img> just fills it.
+   ------------------------------------------------------------ */
+.experience .photo-container,
+.project .photo-container,
+.stuff-photo .photo-container,
+.photo-stuff .photo-container,
+.book-cover {
+    flex: 0 0 auto;
+    max-width: 100%;
 }
 
-.project img {
-    width: 400px;
-    display: flex;
-    height: auto;
-    object-fit: contain;
-    justify-self: right;
-    border-radius: 40px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 5px #3d302a);
+.experience .photo-container { width: var(--img-logo); }
+.project .photo-container    { width: var(--img-project); }
+.book-cover                  { width: var(--img-book); }
+/* .stuff-photo / .photo-stuff widths are set in the About section below. */
+
+.experience .photo-container img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;   /* contain, never cover -- do not crop a logo */
+    display: block;
+    filter: var(--glow);
 }
 
+.experience .info-container,
 .project .info-container {
     flex: 1;
-    gap: 4px;
+    min-width: 0;
 }
 
-.project .info-container h3, 
+.experience .info-container h3,
+.experience .info-container p,
+.project .info-container h3,
 .project .info-container p {
     margin: 0;
 }
 
-input[type="radio"] {
-	display: none;
+.project h2,
+.proj-modal-header h2,
+.reading-list h2 {
+    display: flex;
+    justify-content: center;
 }
 
-.modal-state {
-    display: none;
+.project .photo-container img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;     /* uniform card height beats showing every pixel */
+    object-position: center top;
+    display: block;
+    border-radius: var(--radius-card);
+    filter: var(--glow);
 }
 
+/* ---------- Modals ---------- */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(48, 44, 42, 0.8);
+    background: var(--scrim);
+    overscroll-behavior: contain;   /* don't scroll the page behind the modal */
     z-index: 1000;
-    animation: fadeIn 0.2s ease-out;
-
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-time) ease, visibility var(--transition-time);
+    transition: opacity var(--transition-time) ease,
+                visibility var(--transition-time);
 }
 
 .modal-backdrop {
@@ -200,10 +223,12 @@ input[type="radio"] {
     background: var(--background-color);
     padding: 40px;
     border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-modal);
     width: 90%;
     max-width: 800px;
-    box-shadow: 0 0px 20px var(--highlight-color);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px var(--highlight-color);
     z-index: 1001;
 }
 
@@ -217,16 +242,17 @@ input[type="radio"] {
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 2em;
+    font-size: 2rem;
+    line-height: 1;
     cursor: pointer;
     color: var(--accent-color);
-    padding-top: 5px;
-    padding-right: 10px;
+    padding: 5px 10px 0 0;
     transition: transform var(--transition-time) ease-in-out;
 }
 
-.close-btn:hover {
-    transform: scale(1.2);
+.close-btn:focus-visible {
+    outline: 3px solid var(--border-color);
+    outline-offset: 2px;
 }
 
 .exp-modal-header {
@@ -238,41 +264,49 @@ input[type="radio"] {
 
 .exp-modal-header img {
     width: 60px;
-    filter: drop-shadow(0 0 5px #3d302a);
+    filter: var(--glow);
 }
 
 .exp-modal-details,
 .proj-modal-details {
     display: flex;
     flex-direction: column;
-    padding-left: var(--section-x-padding);
-    padding-right: var(--section-x-padding);
+    padding-inline: var(--section-x-padding);
 }
 
-.stuff-photo, 
+/* ---------- About ---------- */
+.stuff-photo,
 .photo-stuff {
     display: flex;
     align-items: center;
+    gap: var(--about-padding);   /* was padding on the <img>; belongs here */
     padding: var(--about-padding);
     border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
-    background-color: transparent; /* Or var(--background-color) if needed */
-    transition: transform var(--transition-time) ease, box-shadow var(--transition-time) ease;
+    border-radius: var(--radius-modal);
+    background-color: transparent;
+    transition: transform var(--transition-time) ease,
+                box-shadow var(--transition-time) ease;
 }
 
 .stuff-photo .info-container,
 .photo-stuff .info-container {
+    flex: 1 1 auto;
+    min-width: 0;      /* lets the text column shrink instead of the photo */
     padding: var(--about-padding);
+}
+
+.stuff-photo .photo-container,
+.photo-stuff .photo-container {
+    width: var(--img-about);
 }
 
 .stuff-photo img,
 .photo-stuff img {
-    width: 270px;
+    width: 100%;
     height: auto;
-    border-radius: 20%;
-    border-color: transparent;
-    padding: var(--about-padding);
-    filter: drop-shadow(0 0 5px #3d302a);
+    display: block;
+    border-radius: var(--radius-photo);
+    filter: var(--glow);
 }
 
 .stuff {
@@ -280,39 +314,77 @@ input[type="radio"] {
     flex-direction: column;
     padding: var(--about-padding);
     border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-modal);
 }
+
 .stuff h3 {
     align-self: center;
 }
 
-
-/* Book Section */
-.reading-list h2 {
-    display: flex;
-    justify-content: center;
-}
+/* ---------- Reading ---------- */
 .reading-list {
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding: var(--about-padding);
     border: var(--border-width) solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-modal);
 }
+
 .book {
     display: flex;
     align-items: center;
+    gap: 30px;   /* moved here from `.book-cover img`, where it was a no-op */
 }
+
 .book-cover img {
-    width: 10em;
-    gap: 30px;
-    height: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 5px #3d302a);
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;     /* normalises 3:4 and 2:3 covers to one row height */
+    display: block;
+    border-radius: 4px;
+    filter: var(--glow);
 }
+
 .book-info {
     flex: 1;
-    padding-left: 2em;
+    min-width: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #exp-label:hover,
+    #proj-label:hover,
+    #about-label:hover,
+    #read-label:hover {
+        border-bottom: var(--border-width) solid var(--border-color);
+        transform: scale(1.1);
+    }
+
+    .experience:hover,
+    .project:hover {
+        transform: scale(1.02);
+        box-shadow: var(--card-shadow);
+    }
+
+    .close-btn:hover {
+        transform: scale(1.2);
+    }
+}
+
+/* ---------- Inline lists (resumes, project links) ---------- */
+.resume-list,
+.link-list {
+    margin: 0;
+    padding-left: 1.25em;   /* room for the markers */
+    font-size: 1.3rem;
+}
+ 
+.resume-list li + li,
+.link-list li + li {
+    margin-top: 0.75rem;
+}
+ 
+.resume-list li::marker,
+.link-list li::marker {
+    color: var(--border-color);
 }
