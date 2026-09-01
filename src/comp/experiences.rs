@@ -29,8 +29,10 @@ static FREEBSD_OSS: LazyLock<Experience> = LazyLock::new(|| Experience {
     desc: html! {
         p {
             "Main interest is network drivers, with additional work on GPIO and character "
-            "devices. Currently developing a veb(4) variant for FreeBSD. Landed a cleanup "
-            "in if_bridge(4) removing dead code."
+            "devices. Currently developing a veb(4) variant for FreeBSD. "
+            "Contributed merged fixes to the FreeBSD network stack (if_bridge(4)), "
+            "including eliminating a NULL-pointer dereference and a redundant mbuf "
+            "free in the bridge input path. "
         }
     },
     links: vec![],
