@@ -20,6 +20,7 @@ pub fn reading() -> Markup {
             }
             .reading-list {
                 h2 { "Planning to Read" }
+                (BROTHERS_KARAMAZOV.showcase())
                 (TO_SELL_IS_HUMAN.showcase())
                 (TRIPLE_PACKAGE.showcase())
             }
@@ -31,6 +32,13 @@ pub fn reading() -> Markup {
         }
     }
 }
+
+static BROTHERS_KARAMAZOV: LazyLock<Book> = LazyLock::new(|| Book {
+    title: "The Brothers Karamazov",
+    author: "Fyodor Dostoevsky",
+    cover: Photo::book("brotherskaramazov", "Cover of The Brothers Karamazov"),
+    thoughts: None,
+});
 
 static REVEREND_INSANITY: LazyLock<Book> = LazyLock::new(|| Book {
     title: "Reverend Insanity",
