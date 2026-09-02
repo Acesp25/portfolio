@@ -388,3 +388,7 @@ input[type="radio"],
 .link-list li::marker {
     color: var(--border-color);
 }
+
+.project .info-container .tools-list {
+    margin-top: 0.85rem;
+}

@@ -3,6 +3,7 @@ use std::sync::LazyLock;
 
 use super::images::{Loading, Photo};
 use super::ui::{Link, Modal, link_list, slug};
+use super::tools::{Tool, Tool::*};
 
 pub fn projects() -> Markup {
     html! {
@@ -22,6 +23,7 @@ static RUSTKLD: LazyLock<Project> = LazyLock::new(|| Project {
     name: "RustKLD",
     brief: "FreeBSD framework for writing Rust kernel device drivers",
     img: Photo::project("rustkld", "RustKLD project banner"),
+    tools: vec![Rust, C, FreeBSD, Bhyve, Jails],
     desc: html! {
         p {
             "This framework came out of my GSoC project with FreeBSD. It lets developers "
@@ -39,6 +41,7 @@ static VEB: LazyLock<Project> = LazyLock::new(|| Project {
     name: "veb(4) Network Driver (WIP)",
     brief: "Virtual Ethernet Bridge pseudo-device for FreeBSD",
     img: Photo::project("veb", "veb(4) project banner"),
+    tools: vec![C, DTrace, Bhyve, Jails, FreeBSD],
     desc: html! {
         p {
             "A FreeBSD network driver modeled on OpenBSD's veb(4). It is structurally "
@@ -57,6 +60,7 @@ static VTGPIO: LazyLock<Project> = LazyLock::new(|| Project {
     name: "VirtIO GPIO Driver (WIP)",
     brief: "VirtIO general-purpose I/O driver for FreeBSD",
     img: Photo::project("vtgpio", "VirtIO GPIO project banner"),
+    tools: vec![C, DTrace, Bhyve, QEMU, FreeBSD],
     desc: html! {
         p {
             "Written to get familiar with more involved FreeBSD device drivers, against "
@@ -71,6 +75,7 @@ static TASTEBASE: LazyLock<Project> = LazyLock::new(|| Project {
     name: "TasteBase",
     brief: "A web app that cuts the research out of cooking",
     img: Photo::project("tastebase", "TasteBase project banner"),
+    tools: vec![Java, SpringBoot, Jira, MariaDB],
     desc: html! {
         p {
             "A group project for my software engineering course. I was one of two people "
@@ -90,6 +95,7 @@ static PINGPONG: LazyLock<Project> = LazyLock::new(|| Project {
     name: "TCP PingPong",
     brief: "Socket programming in both Rust and C",
     img: Photo::project("pingpong", "TCP PingPong project banner"),
+    tools: vec![C, POSIX, FreeBSD],
     desc: html! {
         p {
             "An introduction to socket programming with C POSIX sockets and Rust's "
@@ -104,6 +110,7 @@ static SETUP: LazyLock<Project> = LazyLock::new(|| Project {
     name: "FreeBSD Setup",
     brief: "How I run FreeBSD day to day",
     img: Photo::project("setup", "Photo of my FreeBSD home servers"),
+    tools: vec![FreeBSD, Pf, WireGuard, Jails, Bhyve, NFS],
     desc: html! {
         p {
             "Two FreeBSD servers in active use. One is a custom router and endpoint that "
@@ -120,6 +127,7 @@ static WEBSITE: LazyLock<Project> = LazyLock::new(|| Project {
     name: "Portfolio Website",
     brief: "This very website you're looking at :)",
     img: Photo::project("website", "Screenshot of this website"),
+    tools: vec![Rust, Maud, Rocket, FreeBSD],
     desc: html! {
         p {
             "Built in Rust with no hand-written HTML and no JavaScript, the templates "
@@ -137,6 +145,7 @@ struct Project {
     name:   &'static str,
     brief:  &'static str,
     img:    Photo,
+    tools:  Vec<Tool>,
     desc:   Markup,
     links:  Vec<Link>,
 }
@@ -150,6 +159,7 @@ impl Project {
                 .info-container {
                     h2 { (self.name) }
                     p { (self.brief) }
+                    (Tool::link_tools(&self.tools))
                 }
                 (self.img.framed(Loading::Lazy))
             },
