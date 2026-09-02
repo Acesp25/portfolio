@@ -7,8 +7,8 @@ use super::ui::{Link, Modal, link_list, slug};
 pub fn projects() -> Markup {
     html! {
         .body-container {
-            (RUSTKLD.showcase())
             (VEB.showcase())
+            (RUSTKLD.showcase())
             (VTGPIO.showcase())
             (TASTEBASE.showcase())
             (PINGPONG.showcase())
