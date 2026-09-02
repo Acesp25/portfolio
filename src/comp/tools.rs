@@ -33,10 +33,10 @@ macro_rules! tools {
 }
 
 tools! {
-    C, Rust, Java, Python, Assembly, Bash,
+    C, Rust, Java, Python, Bash,
     SpringBoot = "Spring Boot", MariaDB, PyTorch, TensorFlow, Maud, Rocket, POSIX,
     DTrace, Jails, Bhyve = "bhyve", QEMU, Pf = "pf", GDB = "gdb",
-    Jira, Phabricator, 
-    FreeBSD, OpenBSD, Linux, 
+    Jira,
+    FreeBSD, Linux, 
     NFS, WireGuard,
 }

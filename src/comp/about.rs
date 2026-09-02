@@ -42,17 +42,17 @@ pub fn about() -> Markup {
             (stuff(html! {
                 h3 { "Technical Stack" }
                 p { strong { "Languages: " }
-                    "C, Rust, Python, Java, Bash, Assembly (MIPS, x86-64)" }
+                    "C, Rust, Python, Java, Bash" }
                 p { strong { "Systems Programming: " }
-                    "FreeBSD drivers, POSIX (pthreads, sockets, IPC), ATF and Kyua testing" }
+                    "FreeBSD drivers, POSIX (pthreads, sockets, IPC), ATF & Kyua testing" }
                 p { strong { "AI & ML: " }
                     "PyTorch, TensorFlow, UNets, GANs" }
                 p { strong { "Networking: " }
-                    "pf, iptables, Unbound, Tailscale" }
+                    "pf, Unbound, WireGuard, Tailscale" }
                 p { strong { "Environments & Virtualization: " }
                     "FreeBSD, Linux, bhyve, QEMU, jails" }
                 p { strong { "Tools: " }
-                    "Vim, Visual Studio Code, Git, DTrace, GDB, Wireshark" }
+                    "DTrace, GDB, Wireshark" }
             }))
 
             (photo_stuff(&FENCING, html! {
