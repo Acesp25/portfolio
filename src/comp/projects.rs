@@ -12,30 +12,13 @@ pub fn projects() -> Markup {
             (RUSTKLD.showcase())
             (VTGPIO.showcase())
             (TASTEBASE.showcase())
-            (PINGPONG.showcase())
             (SETUP.showcase())
             (WEBSITE.showcase())
+            (PINGPONG.showcase())
         }
     }
 }
 
-static RUSTKLD: LazyLock<Project> = LazyLock::new(|| Project {
-    name: "RustKLD",
-    brief: "FreeBSD framework for writing Rust kernel device drivers",
-    img: Photo::project("rustkld", "RustKLD project banner"),
-    tools: vec![Rust, C, FreeBSD, Bhyve, Jails],
-    desc: html! {
-        p {
-            "This framework came out of my GSoC project with FreeBSD. It lets developers "
-            "create their own Rust device drivers for FreeBSD, with a modular, expandable "
-            "structure, CI integration, and documentation for people learning the codebase."
-        }
-    },
-    links: vec![Link {
-        label: "Code: Acesp25/rustkld",
-        href: "https://github.com/Acesp25/rustkld",
-    }],
-});
 
 static VEB: LazyLock<Project> = LazyLock::new(|| Project {
     name: "veb(4) Network Driver (WIP)",
@@ -44,15 +27,62 @@ static VEB: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![C, DTrace, Bhyve, Jails, FreeBSD],
     desc: html! {
         p {
-            "A FreeBSD network driver modeled on OpenBSD's veb(4). It is structurally "
-            "similar to if_bridge(4) but stripped down for jails and bhyve VMs, and it "
-            "hides itself from the host network stack. The result is a shorter L2 path, "
-            "which matters for latency-sensitive workloads."
+            "A Layer 2 bridge for connecting jails and bhyve VMs, ported from OpenBSD. "
+            "It is structurally close to FreeBSD's own if_bridge(4), but stripped down: "
+            "it does no protocol processing and never attaches to the host network stack."
+        }
+        ul {
+            li {
+                "Shorter packet path than if_bridge(4), which matters for "
+                "latency-sensitive workloads."
+            }
+            li { 
+                "Incorperates extrinsic L2 Host communication via a vport interface, "
+                "allowing a more efficient bridging technique for members interfaces." }
+            li { "Completly isolated from the host network stack." }
+            li {
+                "Currently in development, heading for design review on the "
+                "freebsd-net mailing list."
+            }
         }
     },
     links: vec![Link {
         label: "Code: Acesp/freebsd-veb",
         href: "https://github.com/Acesp25/freebsd-veb"
+    }],
+});
+
+static RUSTKLD: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "RustKLD",
+    brief: "FreeBSD framework for writing Rust kernel device drivers",
+    img: Photo::project("rustkld", "RustKLD project banner"),
+    tools: vec![Rust, C, FreeBSD, Bhyve, Jails],
+    desc: html! {
+        p {
+            "My Google Summer of Code 2025 project with FreeBSD. It gives a developer "
+            "the scaffolding to write a kernel driver in Rust without first solving the "
+            "build and interop problems on their own."
+        }
+        ul {
+            li {
+                "Modular layout, so a new driver starts from a working template rather "
+                "than an empty file."
+            }
+            li {
+                "Includes custom wrappers and C object handling, taking full advantage of the safe and powerful design "
+                "of Rust's type system."
+            }
+            li {
+                "Handles the module build glue and the boundary between Rust and the "
+                "C kernel APIs."
+            }
+            li { "CI integration and documentation written for people new to the codebase." }
+            li { "Spearheaded project architecture and development under two FreeBSD committer mentors." }
+        }
+    },
+    links: vec![Link {
+        label: "Code: Acesp25/rustkld",
+        href: "https://github.com/Acesp25/rustkld",
     }],
 });
 
@@ -63,9 +93,12 @@ static VTGPIO: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![C, DTrace, Bhyve, QEMU, FreeBSD],
     desc: html! {
         p {
-            "Written to get familiar with more involved FreeBSD device drivers, against "
-            "the OASIS VirtIO 1.3 specification. Originally in C; a Rust version is "
-            "planned. Does not yet support the IRQ feature."
+            "A driver for the VirtIO GPIO device, written against the OASIS VirtIO 1.3 "
+            "specification to get hands-on with a more involved driver than a toy example."
+        }
+        ul {
+            li { "Implements the specification's core GPIO operations over the VirtIO transport." }
+            li { "IRQ support is not implemented yet, and a Rust version is planned." }
         }
     },
     links: vec![],
@@ -78,32 +111,24 @@ static TASTEBASE: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![Java, SpringBoot, Jira, MariaDB],
     desc: html! {
         p {
-            "A group project for my software engineering course. I was one of two people "
-            "writing and maintaining the backend: MariaDB behind a custom Spring Boot API "
-            "for the frontend team to consume. Users signed in with a Google account, "
-            "entered their ingredients, and got matching recipes. The course also had us "
-            "running the whole project through Jira."
+            "A recipe app built by a team for my software engineering course. You enter "
+            "the ingredients you already have and it returns recipes you can actually "
+            "cook. I was one of two people writing and maintaining the backend."
+        }
+        ul {
+            li {
+                "Spring Boot REST API in a layered controller, service, and DAO "
+                "structure, backed by MariaDB."
+            }
+            li { "Google sign-in through Spring Security OAuth2, with JWTs for session handling." }
+            li { "JUnit 5 tests against an in-memory H2 database, endpoints documented with OpenAPI." }
+            li { "Run as a sprint-based project in Jira as part of the coursework." }
         }
     },
     links: vec![Link {
         label: "Code: TastebaseApp/Tastebase",
         href: "https://github.com/TastebaseApp/Tastebase",
     }],
-});
-
-static PINGPONG: LazyLock<Project> = LazyLock::new(|| Project {
-    name: "TCP PingPong",
-    brief: "Socket programming in both Rust and C",
-    img: Photo::project("pingpong", "TCP PingPong project banner"),
-    tools: vec![C, POSIX, FreeBSD],
-    desc: html! {
-        p {
-            "An introduction to socket programming with C POSIX sockets and Rust's "
-            "std::net. A Rust server/client and a C server/client talk to each other in "
-            "both directions."
-        }
-    },
-    links: vec![],
 });
 
 static SETUP: LazyLock<Project> = LazyLock::new(|| Project {
@@ -113,11 +138,24 @@ static SETUP: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![FreeBSD, Pf, WireGuard, Jails, Bhyve, NFS],
     desc: html! {
         p {
-            "Two FreeBSD servers in active use. One is a custom router and endpoint that "
-            "filters and drops unwanted traffic, mostly telemetry. The other is heavier "
-            "and runs my virtual machines, jails, and an NFS server. The NFS server is "
-            "paired with WireGuard tunnels, which gives me cloud storage for my portable "
-            "devices."
+            "Two FreeBSD servers I run at home, and where most of my hands-on systems "
+            "experience comes from."
+        }
+        ul {
+            li {
+                "A router and network endpoint running pf and AdGuardHome, filtering and dropping "
+                "unwanted outbound traffic, mostly telemetry."
+            }
+            li { "A second, heavier host running my bhyve virtual machines and jails." }
+            li { "Bhyve VMs are tailored for compiling and testing my written FreeBSD code."}
+            li { "The jails that are setup include by are not limited to: hosting this website, "
+                 "hosting image viewers for my NFS server, and hosting a modded Minecraft server for my friends and I."
+            }
+            li {
+                "NFS exported over WireGuard tunnels, which gives my portable devices "
+                "storage that follows them off the network."
+            }
+            li { "Daily ZFS snapshots via to ensure that data sent to and from my NFS can get restored upon a failure."}
         }
     },
     links: vec![],
@@ -130,15 +168,37 @@ static WEBSITE: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![Rust, Maud, Rocket, FreeBSD],
     desc: html! {
         p {
-            "Built in Rust with no hand-written HTML and no JavaScript, the templates "
-            "are Rust macros (Maud) served by Rocket. It was a lot of fun to make, you "
-            "should check it out :)"
+            "This site, written in Rust with no hand-written HTML and no JavaScript, it "
+            "was a lot of fun to make!"
+        }
+        ul {
+            li {
+                "Templates are Rust macros (Maud), type-checked and compiled into the "
+                "binary alongside everything else, and served by Rocket."
+            }
+            li { "CSS is minified and images are converted to WebP ahead of deployment." }
+            li { "Runs on my own FreeBSD hardware." }
         }
     },
     links: vec![Link {
         label: "Code: Acesp25/portfolio",
         href: "https://github.com/Acesp25/portfolio",
     }],
+});
+
+static PINGPONG: LazyLock<Project> = LazyLock::new(|| Project {
+    name: "TCP PingPong",
+    brief: "Socket programming in both Rust and C",
+    img: Photo::project("pingpong", "TCP PingPong project banner"),
+    tools: vec![C, POSIX, FreeBSD],
+    desc: html! {
+        p {
+            "A small exercise to learn socket programming from both sides: C POSIX "
+            "sockets and Rust's std::net. A Rust server and client and a C server and "
+            "client all talk to each other in either direction."
+        }
+    },
+    links: vec![],
 });
 
 struct Project {
