@@ -231,6 +231,7 @@ impl Project {
                 .proj-modal-details {
                     p { (self.brief) }
                     (self.desc)
+                    (Tool::link_tools(&self.tools))
                     (link_list(&self.links))
                 }
             },

@@ -375,6 +375,7 @@ input[type="radio"],
 .exp-modal-details ul,
 .proj-modal-details ul {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .exp-modal-details,
