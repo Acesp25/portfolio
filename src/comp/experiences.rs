@@ -3,6 +3,7 @@ use std::sync::LazyLock;
 
 use super::images::{Loading, Photo};
 use super::ui::{Link, Modal, link_list, slug};
+use super::tools::{Tool, Tool::*};
 
 pub fn experiences() -> Markup {
     html! {
@@ -26,16 +27,29 @@ static FREEBSD_OSS: LazyLock<Experience> = LazyLock::new(|| Experience {
     title: "Open Source Contributor",
     date: "Sept 2025 - Present",
     logo: FREEBSD_LOGO,
+    tools: vec![C, DTrace, FreeBSD, GDB],
     desc: html! {
         p {
-            "Main interest is network drivers, with additional work on GPIO and character "
-            "devices. Currently developing a veb(4) variant for FreeBSD. "
-            "Contributed merged fixes to the FreeBSD network stack (if_bridge(4)), "
-            "including eliminating a NULL-pointer dereference and a redundant mbuf "
-            "free in the bridge input path. "
+            "My main focus is mostly on network drivers/the network stack altogether. With "
+            "additional interests on GPIO and character devices/device drivers in general."
+        }
+        ul {
+            li {
+                "Merged fixes to if_bridge(4) in the network stack, including a "
+                "NULL-pointer dereference and a redundant mbuf free in the bridge "
+                "input path."
+            }
+            li {
+                "Currently developing veb(4), a virtual Ethernet bridge ported from "
+                "OpenBSD."
+            }
+            li { "Changes go through the project's own review process before they land." }
         }
     },
-    links: vec![],
+    links: vec![Link {
+        label: "My commits in freebsd-src",
+        href: "https://github.com/freebsd/freebsd-src/commits/main/?author=Acesp25",
+    }],
 });
 
 static TXST: LazyLock<Experience> = LazyLock::new(|| Experience {
@@ -43,14 +57,20 @@ static TXST: LazyLock<Experience> = LazyLock::new(|| Experience {
     title: "Deep Learning Researcher",
     date: "Aug 2024 - Present",
     logo: TXST_LOGO,
+    tools: vec![Python, PyTorch, Linux, Bash],
     desc: html! {
         p {
-            "Research on deep learning techniques for GAN-based adversarial perturbation "
-            "generation. The project uses hybrid UNet models to produce effective and "
-            "imperceptible perturbations that carry out impersonation attacks against "
-            "facial recognition systems."
+            "Undergraduate research on adversarial machine learning: generating "
+            "perturbations that fool facial recognition systems."
         }
-        p { "Paper under review for AAAI 2027." }
+        ul {
+            li {
+                "Hybrid UNet generators in a GAN setup, trained to produce "
+                "perturbations that carry out impersonation attacks while staying "
+                "imperceptible to a human viewer."
+            }
+            li { "First author on a paper currently under review for AAAI 2027." }
+        }
     },
     links: vec![],
 });
@@ -60,11 +80,22 @@ static FREEBSD_GSOC: LazyLock<Experience> = LazyLock::new(|| Experience {
     title: "Google Summer of Code Student",
     date: "May 2025 - Sept 2025",
     logo: FREEBSD_LOGO,
+    tools: vec![Rust, C, FreeBSD, Bash],
     desc: html! {
         p {
-            "Testing and development for FreeBSD Rust kernel device drivers. The outcome "
-            "was a modular Rust framework for building FreeBSD kernel device drivers in "
-            "Rust, plus a test suite covering reliability and performance."
+            "Selected by FreeBSD for Google Summer of Code to work on writing kernel "
+            "device drivers in Rust."
+        }
+        ul {
+            li {
+                "Delivered a modular framework for building FreeBSD kernel device "
+                "drivers in Rust."
+            }
+            li { "Wrote a test suite covering reliability and performance." }
+            li {
+                "Worked under two FreeBSD committer mentors and presented the result "
+                "in the project's GSoC showcase video."
+            }
         }
     },
     links: vec![
@@ -84,10 +115,12 @@ static GPPH: LazyLock<Experience> = LazyLock::new(|| Experience {
     title: "Medical AI Research Intern",
     date: "May 2024 - Aug 2024",
     logo: GPPH_LOGO,
+    tools: vec![Python, PyTorch, TensorFlow, Linux],
     desc: html! {
         p {
-            "Placed 1st in the 2024 MICCAI WHS++ Challenge. Built ensembled deep learning "
-            "models for whole-heart segmentation in CT and MRI scans."
+            "Placed 1st in the 2024 MICCAI WHS++ Challenge with an ensemble of deep "
+            "learning models for whole-heart segmentation across CT and MRI scans. The "
+            "work was published in the CARE workshop proceedings."
         }
     },
     links: vec![Link {
@@ -100,7 +133,8 @@ static TEKRESCUE: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "tekRESCUE",
     title: "Maintenance Technician",
     date: "Aug 2022 - May 2024",
-    logo: TEKRESCUE_LOGO,
+    logo: TEKRESCUE_LOGO, 
+    tools: vec![],
     desc: html! {
         p {
             "Performed weekly maintenance on a range of computer systems for both large "
@@ -116,6 +150,7 @@ struct Experience {
     title:  &'static str,
     date:   &'static str,
     logo:   Photo,
+    tools:  Vec<Tool>,
     desc:   Markup,
     links:  Vec<Link>,
 }
@@ -148,6 +183,7 @@ impl Experience {
                 }
                 .exp-modal-details {
                     (self.desc)
+                    (Tool::link_tools(&self.tools))
                     (link_list(&self.links))
                 }
             },

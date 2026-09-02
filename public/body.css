@@ -372,10 +372,12 @@ input[type="radio"],
 }
 
 /* ---------- Inline lists (resumes, project links) ---------- */
+.exp-modal-details ul,
 .proj-modal-details ul {
     margin-top: 0;
 }
 
+.exp-modal-details,
 .proj-modal-details,
 .resume-list,
 .link-list {
@@ -384,13 +386,15 @@ input[type="radio"],
     font-size: 1.3rem;
 }
  
+.exp-modal-details li + li,
 .proj-modal-details li + li,
 .resume-list li + li,
 .link-list li + li {
     margin-top: 0.75rem;
 }
  
-.proj-modal-details li::marker
+.exp-modal-details li::marker,
+.proj-modal-details li::marker,
 .resume-list li::marker,
 .link-list li::marker {
     color: var(--border-color);
