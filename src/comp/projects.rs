@@ -41,13 +41,16 @@ static VEB: LazyLock<Project> = LazyLock::new(|| Project {
     img: Photo::project("veb", "veb(4) project banner"),
     desc: html! {
         p {
-            "A FreeBSD network driver modelled on OpenBSD's veb(4). It is structurally "
+            "A FreeBSD network driver modeled on OpenBSD's veb(4). It is structurally "
             "similar to if_bridge(4) but stripped down for jails and bhyve VMs, and it "
             "hides itself from the host network stack. The result is a shorter L2 path, "
             "which matters for latency-sensitive workloads."
         }
     },
-    links: vec![],
+    links: vec![Link {
+        label: "Code: Acesp/freebsd-veb",
+        href: "https://github.com/Acesp25/freebsd-veb"
+    }],
 });
 
 static VTGPIO: LazyLock<Project> = LazyLock::new(|| Project {
