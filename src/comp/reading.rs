@@ -9,14 +9,17 @@ pub fn reading() -> Markup {
             .reading-list {
                 h2 { "Currently Reading" }
                 (REVEREND_INSANITY.showcase())
-                (ALCHEMIST.showcase())
-                (NOTES_UNDERGROUND.showcase())
-                (HOUSE_OF_LEAVES.showcase())
             }
             .reading-list {
                 h2 { "Favorites" }
                 (UNDERSTANDING_PROGRAMMER.showcase())
                 (NINETEEN_EIGHTY_FOUR.showcase())
+            }
+            .reading-list {
+                h2 { "On Hold" }
+                (ALCHEMIST.showcase())
+                (NOTES_UNDERGROUND.showcase())
+                (HOUSE_OF_LEAVES.showcase())
             }
             .reading-list {
                 h2 { "Planning to Read" }
@@ -44,7 +47,11 @@ static REVEREND_INSANITY: LazyLock<Book> = LazyLock::new(|| Book {
     title: "Reverend Insanity",
     author: "蛊真人",
     cover: Photo::book("reverendinsanity", "Cover of Reverend Insanity"),
-    thoughts: None,
+    thoughts: Some(html! {
+        p {
+            "Currently half-way through volume #2; we all should strive to admire the footless bird."
+        }
+    }),
 });
 
 static ALCHEMIST: LazyLock<Book> = LazyLock::new(|| Book {
