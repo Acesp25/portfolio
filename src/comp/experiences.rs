@@ -40,8 +40,8 @@ static FREEBSD_OSS: LazyLock<Experience> = LazyLock::new(|| Experience {
                 "input path."
             }
             li {
-                "Currently developing veb(4), a virtual Ethernet bridge ported from "
-                "OpenBSD."
+                "Currently developing veb(4), a virtual Ethernet bridge inspired by "
+                "OpenBSD's own veb(4)."
             }
             li { "Changes go through the project's own review process before they land." }
         }

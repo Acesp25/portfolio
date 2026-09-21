@@ -27,7 +27,7 @@ static VEB: LazyLock<Project> = LazyLock::new(|| Project {
     tools: vec![C, DTrace, Bhyve, Jails, FreeBSD],
     desc: html! {
         p {
-            "A Layer 2 bridge for connecting jails and bhyve VMs, ported from OpenBSD. "
+            "A Layer 2 bridge for connecting jails and bhyve VMs, inspired by OpenBSD's veb(4). "
             "It is structurally close to FreeBSD's own if_bridge(4), but stripped down: "
             "it does no protocol processing and never attaches to the host network stack."
         }
