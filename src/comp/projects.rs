@@ -148,14 +148,14 @@ static SETUP: LazyLock<Project> = LazyLock::new(|| Project {
             }
             li { "A second, heavier host running my bhyve virtual machines and jails." }
             li { "Bhyve VMs are tailored for compiling and testing my written FreeBSD code."}
-            li { "The jails that are setup include by are not limited to: hosting this website, "
-                 "hosting image viewers for my NFS server, and hosting a modded Minecraft server for my friends and I."
+            li { "The jails that are setup include but are not limited to: hosting this website, "
+                 "hosting image viewers for my NFS server, and hosting a modded Minecraft server for my friends and me."
             }
             li {
                 "NFS exported over WireGuard tunnels, which gives my portable devices "
                 "storage that follows them off the network."
             }
-            li { "Daily ZFS snapshots via to ensure that data sent to and from my NFS can get restored upon a failure."}
+            li { "Daily ZFS snapshots to ensure that data sent to and from my NFS can get restored upon a failure."}
         }
     },
     links: vec![],
