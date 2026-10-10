@@ -29,21 +29,18 @@ static VEB: LazyLock<Project> = LazyLock::new(|| Project {
         p {
             "A Layer 2 bridge for connecting jails and bhyve VMs, inspired by OpenBSD's veb(4). "
             "It is structurally close to FreeBSD's own if_bridge(4), but stripped down: "
-            "it does no protocol processing and never attaches to the host network stack."
+            "it does no protocol processing and never attaches itself to the host network stack."
         }
         ul {
             li {
-                "Shorter packet path than if_bridge(4), which matters for "
-                "latency-sensitive workloads."
+                "Shorter packet path compared to if_bridge(4) for latency-sensitive workloads."
             }
             li { 
                 "Incorperates extrinsic L2 Host communication via a vport interface, "
-                "allowing a more efficient bridging technique for members interfaces." }
-            li { "Completly isolated from the host network stack." }
-            li {
-                "Currently in development, heading for design review on the "
-                "freebsd-net mailing list."
+                "allowing a more efficient bridging technique for members interfaces." 
             }
+            li { "Completly isolated from the host network stack." }
+            li { "Currently in development" }
         }
     },
     links: vec![Link {

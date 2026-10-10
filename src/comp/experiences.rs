@@ -17,16 +17,11 @@ pub fn experiences() -> Markup {
     }
 }
 
-const FREEBSD_LOGO: Photo = Photo::experience("fbsd", "FreeBSD");
-const TXST_LOGO: Photo = Photo::experience("txst", "Texas State University");
-const GPPH_LOGO: Photo = Photo::experience("gpph", "Guangdong Provincial People's Hospital");
-const TEKRESCUE_LOGO: Photo = Photo::experience("tkrsc", "tekRESCUE");
-
 static FREEBSD_OSS: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "FreeBSD",
     title: "Open Source Contributor",
     date: "Sept 2025 - Present",
-    logo: FREEBSD_LOGO,
+    logo: Photo::experience("fbsd", "FreeBSD"),
     tools: vec![C, DTrace, FreeBSD, GDB],
     desc: html! {
         p {
@@ -56,7 +51,7 @@ static TXST: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "Texas State University",
     title: "Deep Learning Researcher",
     date: "Aug 2024 - Present",
-    logo: TXST_LOGO,
+    logo: Photo::experience("txst", "Texas State University"),
     tools: vec![Python, PyTorch, Linux, Bash],
     desc: html! {
         p {
@@ -69,7 +64,6 @@ static TXST: LazyLock<Experience> = LazyLock::new(|| Experience {
                 "perturbations that carry out impersonation attacks while staying "
                 "imperceptible to a human viewer."
             }
-            li { "First author on a paper currently under review for AAAI 2027." }
         }
     },
     links: vec![],
@@ -79,7 +73,7 @@ static FREEBSD_GSOC: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "FreeBSD",
     title: "Google Summer of Code Student",
     date: "May 2025 - Sept 2025",
-    logo: FREEBSD_LOGO,
+    logo: Photo::experience("fbsd", "FreeBSD"),
     tools: vec![Rust, C, FreeBSD, Bash],
     desc: html! {
         p {
@@ -114,7 +108,7 @@ static GPPH: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "Guangdong Provincial People's Hospital",
     title: "Medical AI Research Intern",
     date: "May 2024 - Aug 2024",
-    logo: GPPH_LOGO,
+    logo: Photo::experience("gpph", "Guangdong Provincial People's Hospital"),
     tools: vec![Python, PyTorch, TensorFlow, Linux],
     desc: html! {
         p {
@@ -133,7 +127,7 @@ static TEKRESCUE: LazyLock<Experience> = LazyLock::new(|| Experience {
     name: "tekRESCUE",
     title: "Maintenance Technician",
     date: "Aug 2022 - May 2024",
-    logo: TEKRESCUE_LOGO, 
+    logo: Photo::experience("tkrsc", "tekRESCUE"),
     tools: vec![],
     desc: html! {
         p {

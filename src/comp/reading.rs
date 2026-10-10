@@ -49,7 +49,7 @@ static REVEREND_INSANITY: LazyLock<Book> = LazyLock::new(|| Book {
     cover: Photo::book("reverendinsanity", "Cover of Reverend Insanity"),
     thoughts: Some(html! {
         p {
-            "Currently half-way through volume #2; we all should strive to admire the footless bird."
+            "Currently on the Three Kings Inheritance arc."
         }
     }),
 });
